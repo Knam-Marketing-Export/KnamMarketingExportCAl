@@ -159,6 +159,14 @@ form {
     width: 100px;
     height: 30px;
 }
+.paperMillBahl #PaperMillBhal{
+    /* padding: 10px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
 
 /* Sheet size section start */
 
