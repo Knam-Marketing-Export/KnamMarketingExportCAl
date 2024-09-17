@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Calculator Dashboard</title>
+    <link rel="stylesheet" href="cost calculator test.css">
+    <link rel="stylesheet" href="saveDatapage.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="nav">
+        <div class="container-nav">
+            <div class="img-knam">
+                <img src="knam cal logo.png" alt="">
+            </div>
+            <div class="company-name">
+                <h1 id="firstHeading">Knam Marketing</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="master-section-button">
+        <div class="master-container">
+            <section class="home-section">
+                <div class="home-container">
+                    <a href="Knam-Export-cost-calculator.html"><button>Home</button></a>
+                </div>
+            </section>
+            <div class="master-button">
+                <a href="master.html"> <button id="master-section-button">Master section</button>
+                </a>
+            </div>
+
+            <div class="logout-container">
+                <button id="logout-button">Logout</button>
+            </div>
+
+        </div>
+
+    </section>
+    <div class="column-toggle-section">
+        <!-- Toggle Button to Show/Hide Column Toggles -->
+        <button class="toggle-button">Header Filter</button>
+
+        <!-- Column Toggle Section -->
+        <div id="columnToggleSection" class="column-toggle hidden">
+            <label><input type="checkbox" checked data-column="1"> Date</label>
+            <label><input type="checkbox" checked data-column="2"> ID</label>
+            <label><input type="checkbox" checked data-column="3"> Sales Person</label>
+            <label><input type="checkbox" checked data-column="4"> Exch. Rate</label>
+            <label><input type="checkbox" checked data-column="5"> GSM</label>
+            <label><input type="checkbox" checked data-column="6"> Paper Mill</label>
+            <label><input type="checkbox" checked data-column="7"> Paper Code</label>
+            <label><input type="checkbox" checked data-column="8"> Length (cm)</label>
+            <label><input type="checkbox" checked data-column="9"> Width (cm)</label>
+            <label><input type="checkbox" checked data-column="10"> No. of Sheet</label>
+            <label><input type="checkbox" checked data-column="11"> No. of Ream</label>
+            <label><input type="checkbox" checked data-column="12"> Ream Weight</label>
+            <label><input type="checkbox" checked data-column="13"> Paper Cost</label>
+            <label><input type="checkbox" checked data-column="14"> Port</label>
+            <label><input type="checkbox" checked data-column="15"> Freight Cost</label>
+            <label><input type="checkbox" checked data-column="16"> Carton Weight</label>
+            <label><input type="checkbox" checked data-column="17"> Wrapper/Ton</label>
+            <label><input type="checkbox" checked data-column="18"> Carton/Ton</label>
+            <label><input type="checkbox" checked data-column="19"> Total Cost</label>
+            <label><input type="checkbox" checked data-column="20"> Price/MT</label>
+            <label><input type="checkbox" checked data-column="21"> Price/Box</label>
+            <label><input type="checkbox" checked data-column="22"> Sheeting</label>
+            <label><input type="checkbox" checked data-column="23"> Sheeting Cost</label>
+            <label><input type="checkbox" checked data-column="24"> Wrap Cost</label>
+            <label><input type="checkbox" checked data-column="25"> Box Cost</label>
+            <label><input type="checkbox" checked data-column="26"> Local Freight</label>
+            <label><input type="checkbox" checked data-column="27"> Miscellaneous</label>
+            <label><input type="checkbox" checked data-column="28"> Code</label>
+            <label><input type="checkbox" checked data-column="29"> Customer</label>
+        </div>
+    </div>
+
+    <div class="heading-saveData" style="width: 100%;">
+        <h1 style="text-align: center; color: #fff; width: 91%;">Saved Quotations</h1>
+    </div>
+    <table id="savedDataTable">
+        <thead>
+            <tr>
+                <th>Date<input type="text" id="filterDate"></th>
+                <th>ID<input type="text" id="filterNumber"></th>
+                <th>Sales Person<input type="text" id="filterSalesPerson"></th>
+                <th>Exch. Rate<input type="text" id="filterExchangeRate"></th>
+                <th>GSM<input type="text" id="filterGSM"></th>
+                <th>Paper Mill<input type="text" id="filterPaperMill"></th>
+                <th>Paper Code<input type="text" id="filterPaperCode"></th>
+                <th>Lenght (cm)<input type="text" id="filterLength"></th>
+                <th>width (cm)<input type="text" id="filterWidth"></th>
+                <th>No. of Sheet<input type="text" id="filterSheets"></th>
+                <th>No. of ream<input type="text" id="filterReams"></th>
+                <th>Ream Wt. (Kg)<input type="text" id="filterWeightReam"></th>
+                <th>Paper cost<input type="text" id="filterPaperCost"></th>
+                <th>Port<input type="text" id="filterFreightPort"></th>
+                <th>Freight Cost<input type="text" id="filterFreightCost"></th>
+                <th>Carton Wt. (kg)<input type="text" id="filterWeightCarton"></th>
+                <th>Wrapper/Ton<input type="text" id="filterWrappers"></th>
+                <th>Corton/Ton<input type="text" id="filterCartons"></th>
+                <th>Total Cost<input type="text" id="filterTotalCost"></th>
+                <th>Price/MT<input type="text" id="filterPriceMT"></th>
+                <th>Price/Box<input type="text" id="filterPriceBox"></th>
+                <th>Sheeting<input type="text" id="filterSheetingPlace"></th>
+                <th>Sheet Cost/Kg (INR)<input type="text" id="filterSheetCost"></th>
+                <th>Wrap cost/wrap (INR)<input type="text" id="filterWrapperCost"></th>
+                <th>Box cost/Box (INR)<input type="text" id="filterBoxCost"></th>
+                <th>Local Freight (INR)<input type="text" id="filterLocalFreightCost"></th>
+                <th>Miscellaneous (INR)<input type="text" id="filterMiscellaneousCost"></th>
+                <th>Code<input type="text" id="filterCode"></th>
+                <th>Customer<input type="text" id="filterCustomer"></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rows will be added here by JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- edit section -->
+
+    <div class="container-edit-master">
+        <div id="quoteForm" class="quote-form">
+            <button class="close-btn" id="closeQuoteFormBtn" onclick="closeModal()"></button></button>
+            <div class="edit-main-conatiner">
+                <div class="edit-container-one">
+                    <div class="quotation-number-section">
+                        <p style="font-size: 15px; font-weight: 700;"><span id="editQuatationNumber"></span></p>
+                    </div>
+                    <div class="edit-save-quotation-first-row">
+                        <div class="edit-gsm edit-container">
+                            <label for="edit-gsm-lable" class="edit-lable-first-row">GSM :</label>
+                            <select name="edit-gsm-select" id="editGsmSelect" class="edit-select" disabled>
+                                <option value="select">Select</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="22">22</option>
+                                <option value="25">25</option>
+                                <option value="35">35</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+
+                        <div class="edit-paper-mill edit-container">
+                            <label for="edit-paper-mill-lable" class="lable-width-auto">Paper Mill :</label>
+                            <select name="edit-paper-mill-select" id="editPaperMillSelect" class="edit-select">
+                                <!-- <option value="select">Select</option> -->
+                                <option value="360">360</option>
+                                <option value="880">880</option>
+                            </select>
+                        </div>
+
+                        <div class="edit-paper-code edit-container">
+                            <label for="edit-paper-code-lable" class="lable-width-auto">Paper code :</label>
+                            <select name="edit-paper-code-select" id="editPapercodeSelect" class="edit-select">
+                                <option value="0">Select</option>
+                                <option value="3000">3000</option>
+                                <option value="5000">5000</option>
+                            </select>
+                        </div>
+
+                        <div class="paperMillBahl">
+                            <select name="paper-Mill-Bhal" id="editPaperMillBhal" class="edit-select">
+                                <option value="Other">Other</option>
+                                <option value="bahl">Bahl</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-second-row">
+                        <div class="edit-sheet-size edit-container">
+                            <label for="edit-sheet-size-lable" class="edit-lable-second-row">Sheet Size (cm) :</label>
+                            <div class="edit-sheet-size-container">
+                                <input type="number" id="editSheetsizelength" class="editSecondRowCssSheetSize"
+                                    placeholder="L" disabled>
+                                <input type="number" id="editSheetsizewidth" class="editSecondRowCssSheetSize"
+                                    placeholder="W" disabled>
+                            </div>
+                        </div>
+                        <div class="edit-container-sub">
+                            <div class="edit-sheet-in-ream edit-container">
+                                <label for="edit-sheet-in-ream-lable" class="edit-lable-second-row">No. of Sheet in Ream
+                                    :</label>
+                                <input type="number" id="editSheetInReam" class="editSecondRowCss" disabled>
+                            </div>
+                            <div class="edit-ream-per-carton edit-container">
+                                <label for="edit-ream-per-carton-lable" class="edit-lable-second-row">No. Of Ream per
+                                    Carton
+                                    :</label>
+                                <input type="number" id="editReamPerCarton" class="editSecondRowCss" disabled>
+                            </div>
+                        </div>
+                        <div class="edit-container-sub">
+                            <div class="edit-weight-of-ream edit-container">
+                                <label for="edit-weight-of-ream-lable" class="edit-lable-second-row">Weight of Ream
+                                    :</label>
+                                <input type="number" id="editReamWeight" class="editSecondRowCss" disabled>
+                            </div>
+                            <div class="edit-freight edit-container">
+                                <label for="edit-freight-lable" class="edit-lable-second-row">Freight :</label>
+                                <select name="edit-freight-select" id="editfreightSelect" class="edit-select" disabled>
+                                    <option value="select">Select</option>
+                                    <option value="JebelAliPort">Jebel-Ali</option>
+                                    <option value="SoharPort">Sohar</option>
+                                    <option value="DammamPort">Dammam</option>
+                                    <option value="RiyadhPort">Riyadh</option>
+                                    <option value="ShuwaikhPort">Shuwaikh</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-third-row">
+                        <div id="editResults">
+                            <p>Weight of Ream (Kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editWeightOfReam"></span></p>
+                            <p> Net Weight of Carton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editWeightOfCarton"></span></p>
+                            <p>No. of Wrappers per Ton&nbsp;&nbsp;&nbsp;:<span id="editwrappersPerTon"></span></p>
+                            <p>No. of Cartons per Ton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editCartonsPerTon"></span></p>
+                            <p>Total
+                                Cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editTotalCost"></span></p>
+                            <p>Price per
+                                MT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editPricePerMT"></span></p>
+                            <p>Price per
+                                Box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                                    id="editPricePerBox"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="edit-save-quotation-fourth-row" style="display: flex; gap: 30px;">
+                        <div class="edit-sales-person edit-container">
+                            <label for="salesPersonName" class="lable-width-auto" style="font-weight: bold;">Sales
+                                Person
+                                :</label>
+                            <select name="SalesPersonSelection" id="salesPersonDropdown" class="edit-select">
+                                <option value="Unknown">Select</option>
+                                <option value="Mansi">Mansi</option>
+                                <option value="Shubham">Shubham</option>
+                                <option value="Mohini">Mohini</option>
+                                <option value="Yash">Yash</option>
+                                <option value="Madhu">Madhu</option>
+                            </select>
+                        </div>
+                        <div class="customer-container" style="display: flex; align-items: center;">
+                            <label for="customer-Name" class="lable-width-auto" style="font-weight: bold;">Customer
+                                :</label>
+                            <input type="text" id="editCustomerName" class="editSecondRowCss" style="width: 100px;">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="edit-container-two">
+                    <div class="edit-save-quotation-edit-mater-first-row">
+                        <div class="edit-exchangeRate edit-container">
+                            <label for="edit-sheet-in-ream-lable" class="edit-lable-second-row">Exchange Rate
+                                :</label>
+                            <input type="number" id="editExchangeRate" class="editSecondRowCss">
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-edit-mater-second-row edit-container">
+                        <label for="edit-editMaster-paper" class="edit-lable-second-row">Paper Price :</label>
+                        <div class="edit-input-select">
+                            <input type="number" id="editPaperCost" class="editSecondRowCss" required>
+                            <select id="editpaperCostCurrency" class="editcurrency-css" disabled>
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                            </select>
+                            <p id="USDResultSaveEditMaster"></p>
+                            <p id="INRResultSaveEditMaster"></p><br>
+                        </div>
+                    </div>
+
+                    <div class="edit-save-quotation-edit-mater-third-row edit-container">
+                        <label for="edit-editMaster-freight" class="edit-lable-second-row">Freight cost :</label>
+                        <div class="edit-input-select">
+                            <select name="edit-freight-select" id="editMasterEditfreightSelect" class="edit-select"
+                                style="display: none;" disabled>
+                                <option value="select">Select</option>
+                                <option value="JebelAliPort">Jebel-Ali</option>
+                                <option value="SoharPort">Sohar</option>
+                                <option value="DammamPort">Dammam</option>
+                                <option value="RiyadhPort">Riyadh</option>
+                                <option value="ShuwaikhPort">Shuwaikh</option>
+                            </select>
+                            <input type="number" id="editFreightCost" class="editSecondRowCss">
+                            <select id="editfreightCostCurrency" class="editcurrency-css" disabled>
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-edit-mater-fourth-row edit-container-main">
+                        <div class="edit-edit-master-shitting-price edit-container-sub">
+                            <label for="edit-EditMaster-shittingPrice" class="edit-lable-second-row">Sheetting cost / Kg
+                                (INR) :</label>
+                            <input type="number" id="editEditMastersheettingPrice" class="editSecondRowCssSheetSize">
+                        </div>
+                        <div class="wrappers-price-edit-master edit-container-sub">
+                            <label for="edit-EditMaster-wrapperPrice" class="edit-lable-second-row">Wrapper price /
+                                wrapper (INR) :</label>
+                            <input type="number" id="editEditMasterwrapperPrice" class="editSecondRowCssSheetSize">
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-edit-mater-fourth-row edit-container-main">
+                        <div class="edit-edit-master-box-price edit-container-sub">
+                            <label for="edit-EditMaster-boxPrice" class="edit-lable-second-row">Box price / Kg (INR)
+                                :</label>
+                            <input type="number" id="editEditMasterboxPrice" class="editSecondRowCssSheetSize">
+                        </div>
+                        <div class="wrappers-price-edit-master edit-container-sub">
+                            <label for="edit-EditMaster-marginPrice" class="edit-lable-second-row">Code :</label>
+                            <input type="number" id="editEditMastermarginPrice" class="editSecondRowCssSheetSize">
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-edit-mater-fourth-row edit-container-main">
+                        <div class="edit-edit-master-box-price edit-container-sub">
+                            <label for="edit-EditMaster-ocalfreight" class="edit-lable-second-row">Local freight (INR)
+                                :</label>
+                            <input type="number" id="editEditMasterLocalFreight" class="editSecondRowCssSheetSize">
+                        </div>
+                        <div class="wrappers-price-edit-master edit-container-sub">
+                            <label for="edit-EditMaster-Miscellaneous" class="edit-lable-second-row">Miscellaneous
+                                :</label>
+                            <input type="number" id="editEditMasterMiscellaneous" class="editSecondRowCssSheetSize">
+                        </div>
+                    </div>
+                    <div class="edit-save-quotation-edit-mater-fourth-row">
+                        <button type="button" id="edit-save-button">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1220.0.min.js"></script>
+    <script src="savedData.js"></script>
+    <script src="checkAccess.js"></script>
+    <script src="loginpage.js"></script>
+</body>
+
+</html>

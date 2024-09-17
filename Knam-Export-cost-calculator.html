@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Calculator Dashboard</title>
+    <link rel="stylesheet" href="cost calculator test.css">
+</head>
+
+<body>
+
+    <section class="nav">
+        <div class="container-nav">
+            <div class="img-knam">
+                <img src="knam cal logo.png" alt="">
+            </div>
+            <div class="company-name">
+                <h1 id="firstHeading">Knam Marketing</h1>
+            </div>
+            <div class="logout-container">
+                <button id="logout-button">Logout</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="master-section-button">
+        <div class="master-container">
+            <div class="master-button">
+                <a href="master.html"> <button id="master-section-button">Master section</button>
+                </a>
+            </div>
+
+            <div class="saveData-button">
+                <a href="saveDataPage.html"> <button id="saveData-section-button">Saved Quotation</button>
+                </a>
+            </div>
+            <div class="edit-master">
+                <button onclick="editMaster()">Edit Master</button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="dashboard">
+        <h1>Cost Calculator Dashboard</h1>
+        <div class="calculator-section">
+            <h2>Cost Calculator</h2>
+            <form id="costCalculatorForm">
+                <div class="form-conatiner-1">
+                    <div class="gsm-paperMill-paperCode">
+                        <div class="gsm-dropdown">
+                            <label for="gsm" class="lable-css">Paper GSM :</label>
+                            <!-- <input type="number" id="gsm" class="input-css" required><br> -->
+                            <select name="select-gsm" id="gsmSelect" class="input-css">
+                                <option value="select">Select</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="22">22</option>
+                                <option value="25">25</option>
+                                <option value="35">35</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                        <div class="Select-mill">
+                            <label for="paperMill" class="label-css">Paper code :</label>
+                            <select name="select-paperMill" id="paperMill">
+                                <!-- <option value="select">Select</option> -->
+                                <option value="360">360</option>
+                                <option value="880">880</option>
+                                <!-- <option value="Other">Other</option> -->
+                            </select>
+                        </div>
+                        <div class="Select-paper-code">
+                            <label for="paperCode" class="label-css">Select code :</label>
+                            <select name="select-paperCode" id="paperCode">
+                                <option value="0">Select</option>
+                                <option value="3000">3000</option>
+                                <option value="5000">5000</option>
+                            </select>
+                        </div>
+                        <div class="paperMillBahl">
+                            <select name="paper-Mill-Bhal" id="PaperMillBhal">
+                                <option value="Other">Other</option>
+                                <option value="bahl">Bahl</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-conatiner-1">
+                    <div class="size-input">
+                        <label for="sheetSize" class="lable-css-size">Sheet Size (cm) :</label>
+
+                        <input type="number" id="length" class="input-css-size" placeholder="L">
+                        <br>
+                        <input type="number" id="width" class="input-css-size" placeholder="W">
+                    </div>
+                </div>
+
+                <div class="form-conatiner-1">
+                    <label for="noOfSheetInReam" class="lable-css">No of sheet in ream :</label>
+                    <input type="number" id="noOfSheetInReam" class="input-css">
+                </div>
+
+                <div class="form-conatiner-1">
+                    <label for="reamsPerCarton" class="lable-css">No. of ream per carton :</label>
+                    <input type="number" id="reamsPerCarton" class="input-css">
+                </div>
+
+
+                <div class="form-conatiner-1">
+                    <label for="weightOfReam" class="lable-css">Weight of ream :</label>
+                    <input type="number" id="weightOfReam" class="input-css">
+                </div>
+                <div class="form-conatiner-1">
+                    <label for="freight-selection" class="lable-css">Freight :</label>
+                    <select name="choose-freight" id="freightSelection" class="input-css">
+                        <option value="select">Select</option>
+                        <option value="JebelAliPort">Jebel-Ali</option>
+                        <option value="SoharPort">Sohar</option>
+                        <option value="DammamPort">Dammam</option>
+                        <option value="RiyadhPort">Riyadh</option>
+                        <option value="ShuwaikhPort">Shuwaikh</option>
+                    </select>
+                </div>
+
+
+                <div class="form-conatiner-1" id="click-button">
+                    <button type="button" id="convert-button">Calculate</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+
+            <div id="results">
+                <p>Weight of Ream (Kg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="WeightOfReam"></span></p>
+                <p> Net Weight of Carton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="weightOfCarton"></span></p>
+                <p>No. of Wrappers per Ton&nbsp;&nbsp;&nbsp;:<span id="wrappersPerTon"></span></p>
+                <p>No. of Cartons per Ton&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span id="cartonsPerTon"></span></p>
+                <p>Total
+                    Cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="totalCost"></span></p>
+                <p>Price per
+                    MT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="pricePerMT"></span></p>
+                <p>Price per
+                    Box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="pricePerBox"></span></p>
+                <p style="display: none;">Sheeting Palce
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span
+                        id="sheetingPlace">Other</span></p>
+            </div>
+        </div>
+        <div class="sales-person" style="margin-bottom: 20px; margin-top: 10px; display: flex; gap: 20px;">
+            <div class="sales-conatiner">
+                <label for="salesPersonName" class="lable-css" style="font-weight: bold;">Sales Person</label>
+                <select name="SalesPersonSelection" id="salesPersonDropdown" class="input-css">
+                    <option value="Unknown">Select</option>
+                    <option value="Mansi">Mansi</option>
+                    <option value="Shubham">Shubham</option>
+                    <option value="Mohini">Mohini</option>
+                    <option value="Yash">Yash</option>
+                    <option value="Madhu">Madhu</option>
+                </select>
+            </div>
+            <div class="customer-container">
+                <label for="customer-Name" class="lable-css" style="font-weight: bold;">Customer :</label>
+                <input type="text" id="customerName" class="input-css">
+            </div>
+        </div>
+        <button type="button" id="save-button">Save Result</button>
+    </div>
+
+    <div class="container-edit-master">
+        <div id="quoteForm" class="quote-form">
+            <button class="close-btn" id="closeQuoteFormBtn">&times;</button>
+            <div class="millSelectionwithCode">
+                <div class="exchangeRate-edit" style="display: block;">
+                    <label for="exchangeRateEdit">Exchange Rate :</label>
+                    <input type="number" id="exchangeRateeditmaster" style="width: 50px;">
+                </div>
+                <!-- <div class="paperMillCheckBox">
+                    <label for="millName">Code : 880</label>
+                    <input type="checkbox" id="millCheckBox" onclick="populateSavedDataCheckBox ()">
+                </div> -->
+
+                <div class="Select-mill-check-box">
+                    <label for="paperMillCheckBox" class="label-css">Paper code :</label>
+                    <select name="select-paperMill-check-box" id="paperMillCheckBox">
+                        <option value="select">Select</option>
+                        <option value="88080">880</option>
+                    </select>
+                </div>
+                <div class="Select-paper-code-check-box">
+                    <label for="paperCodeCheckBox" class="label-css">Select code :</label>
+                    <select name="select-paperCode-check-box" id="paperCodeCheckBox">
+                        <option value="select">Select</option>
+                        <option value="300030">3000</option>
+                        <option value="500050">5000</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Edit master GSM price currency -->
+            <h2>Paper cost</h2>
+            <div class="select-gsm-0">
+                <label for="GSM-price">GSM / Price :</label>
+                <!-- <input type="selectGsmEditMaster" id="selectGsmEditMaster"> -->
+                <select name="selectGsmEditMaster" id="selectGsmEditMaster" style="display: none;">
+                    <option value="select">Select</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="22">22</option>
+                    <option value="25">25</option>
+                    <option value="35">35</option>
+                    <option value="45">45</option>
+                </select>
+                <input type="number" id="paperCostEditMaster" required>
+                <select id="paperCostCurrencyEditMaster">
+                    <option value="INR">INR</option>
+                    <option value="USD">USD</option>
+                </select>
+                <p id="USDResultEditMaster"></p>
+                <p id="INRResultEditMaster"></p><br>
+            </div>
+            <!-- Edit master freight currenct -->
+            <h2>Freight Cost</h2>
+            <div class="select-freight-0">
+                <label for="freight-price">Freight / Price :</label>
+                <!-- <input type="selectPortEditMaster" id="selectPortEditMaster"> -->
+                <select name="selectPortEditMaster" id="selectPortEditMaster">
+                    <option value="select">Select</option>
+                    <option value="JebelAliPort">Jebel-Ali</option>
+                    <option value="SoharPort">Sohar</option>
+                    <option value="DammamPort">Dammam</option>
+                    <option value="RiyadhPort">Riyadh</option>
+                    <option value="ShuwaikhPort">Shuwaikh</option>
+                </select>
+                <input type="number" id="selectFreightEditMaster" required>
+                <select id="selectFreightCurrencyEditMaster">
+                    <option value="USD">USD</option>
+                    <option value="INR">INR</option>
+                </select>
+                <p id="USDResultEditMaster"></p>
+                <p id="INRResultEditMaster"></p><br>
+            </div>
+            <div class="other-section-conatiner-edit-master">
+                <div class="shitting-price-edit-master">
+                    <label for="shittingPriceEditMaster" id="lable-edit-master">Sheetting cost per Kg (INR) :</label>
+                    <input type="number" id="sheettingPriceEditMaster">
+                </div>
+                <div class="wrappers-price-edit-master">
+                    <label for="wrapperPriceEditMaster" id="lable-edit-master">Wrapper price per wrapper (INR) :</label>
+                    <input type="number" id="wrapperPriceEditMaster">
+                </div>
+
+            </div>
+            <div class="other-section-conatiner-edit-master">
+                <div class="box-price-edit-master">
+                    <label for="boxPriceEditMaster" id="lable-edit-master">Box price per box (INR) :</label>
+                    <input type="number" id="boxPriceEditMaster">
+                </div>
+                <div class="margin-section-edit-master">
+                    <label for="marginEditMaster" id="lable-edit-master">Code :</label>
+                    <input type="number" id="marginEditMaster">
+                </div>
+            </div>
+            <div class="other-section-conatiner-edit-master">
+                <div class="localFreight-section-edit-master">
+                    <label for="localFreightEditMaster" id="lable-edit-master">Local Freight :</label>
+                    <input type="number" id="localFreightEditMaster">
+                </div>
+                <div class="miscellaneous-section-edit-master">
+                    <label for="miscellaneousEditMaster" id="lable-edit-master">Miscellaneous :</label>
+                    <input type="number" id="miscellaneousEditMaster">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1220.0.min.js"></script>
+    <script src="cost calculator test.js"></script>
+    <script src="editmaster.js"></script>
+    <script src="getdata.js"></script>
+    <script src="savedData.js"></script>
+    <script src="checkAccess.js"></script>
+</body>
+
+</html>

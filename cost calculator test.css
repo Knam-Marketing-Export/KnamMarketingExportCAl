@@ -1,0 +1,518 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #70ab3a; /* Main background color */
+    color: #333; /* Default text color */
+    margin: 0;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box; /* Ensure padding and borders are included in element's total width and height */
+}
+
+/* Responsive Container */
+.container {
+    max-width: 1200px; /* Limit the width for larger screens */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Navigation Styles */
+.container-nav {
+    width: 98%;
+    border: 2px solid white; /* White border for navigation */
+    background-color: #fff; /* Background color for navigation */
+    border-radius: 10px; /* Rounded corners */
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between items */
+    padding: 0 20px; /* Horizontal padding */
+    margin-bottom: 20px; /* Space below the navigation */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.container-nav img {
+    width: 150px; /* Fixed width for logo */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100px; /* Restrict height */
+}
+
+/* Responsive Font Size for Header */
+.container-nav h1 {
+    width: 80%;
+    font-size: 2rem; /* Responsive unit for font size */
+    color: #333; /* Header text color */
+}
+
+/* Logout Button Container */
+.logout-container {
+    margin-right: 20px; /* Space to the right of the logout container */
+}
+
+/* Logout Button Styles */
+#logout-button {
+    background-color: #f44336; /* Primary color for button */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding inside button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Responsive font size */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background and scale */
+}
+
+#logout-button:hover {
+    background-color: #d32f2f; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* ------------------------------------------------------------------------------------------ */
+
+/* Master Section Styles */
+.master-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#master-section-button,
+.edit-master button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+#master-section-button:hover,
+.edit-master button:hover {
+    background-color: #0056b3;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    width: 45%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 150px;
+    /* margin: 0 auto; */
+}
+
+#firstHeading {
+    width: 100%;
+    text-align: center;
+    margin-right: 100px;
+    border-bottom: none;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+    border-bottom: 2px solid #70ab3a ;
+    width: 311px;
+    margin-left: 120px;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-conatiner-1 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.gsm-paperMill-paperCode{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    gap: 44px;
+}
+
+.Select-mill label{
+    font-weight: bold;
+}
+
+.gsm-dropdown #gsm{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
+
+.Select-mill #paperMill{
+    /* padding: 10px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
+
+/* Sheet size section start */
+
+.lable-css-size{
+    font-weight: bold;
+    width: 210px;
+}
+
+.form-conatiner-1 .size-input{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form-conatiner-1 .size-input #length{
+    text-align: center;
+}
+
+.form-conatiner-1 .size-input #width{
+    margin-left: 10px;
+    text-align: center;
+}
+
+.input-css-size{
+    width: 60px;
+    height: 30px;
+    margin-left: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Sheet size section end */
+
+.Select-paper-code #paperCode{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
+/* select paper code point */
+.Select-paper-code{
+    display: none;
+}
+
+.Select-paper-code label{
+    font-weight: bold;
+}
+
+.form-conatiner-1 .lable-css {
+    width: 190px;
+    font-weight: bold;
+}
+
+.input-css{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}
+
+#customerName{
+    width: 222px;
+}
+
+#click-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Results Section */
+#results {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#results p {
+    font-size: 1em;
+    margin: 10px 0;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    font-weight: 700;
+    /* width: 400px; */
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+/* Container Edit Master Styles */
+.container-edit-master {
+    position: absolute;
+    top: 180px;
+    right: 0px;
+    /* background-color: #f9f9f9; Lighter background for better visibility */
+    /* border-radius: 8px; Smooth edges */
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); */
+    padding: 20px;
+    width: 420px; /* Increased width for better layout */
+    z-index: 1000;
+    transition: all 0.3s ease; /* Smooth transition for visibility changes */
+}
+
+.quote-form {
+    display: none; /* Hidden by default */
+    background-color: #fff;
+    border: 1px solid #ddd; /* Lighter border for subtle separation */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Changed to relative for positioning the close button */
+    max-width: 100%;
+}
+
+.quote-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.quote-form input[type="text"],
+.quote-form input[type="number"],
+.quote-form select {
+    width: calc(25% - 22px); /* Adjusted width for better padding */
+    height: 35px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.quote-form .close-btn {
+    position: absolute; /* Positioning relative to the parent .quote-form */
+    top: 10px; /* Space from the top */
+    right: 10px; /* Space from the right */
+    background-color: #f44336; /* Red background for close button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+}
+.quote-form .close-btn:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+
+/* Mill and Paper Code Sections */
+.millSelectionwithCode {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.Select-mill-check-box,
+.Select-paper-code-check-box {
+    display: none;
+}
+
+#paperMillCheckBox, #paperCodeCheckBox {
+    width: 100px;
+}
+
+.other-section-conatiner-edit-master {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-evenly;
+    /* margin-left: 60px; */
+}
+
+.other-section-conatiner-edit-master label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555; /* Slightly darker color for better readability */
+    width: 200px;
+}
+
+#sheettingPriceEditMaster, #wrapperPriceEditMaster, 
+#boxPriceEditMaster, #marginEditMaster, #localFreightEditMaster, #miscellaneousEditMaster {
+    width: 80px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .form-conatiner-1 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container-edit-master {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .quote-form {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container-nav {
+        width: 95%;
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .container-nav h1 {
+        width: 100%;
+        font-size: 1.5rem; /* Smaller font size for header */
+    }
+
+    .dashboard {
+        width: 95%;
+        margin: 0px;
+    }
+    h1, h2 {
+        width: 60%;
+        font-size: 1.2rem; /* Smaller font size for headings */
+        text-align: center;
+    }
+
+    .gsm-paperMill-paperCode {
+        display: flex;
+        flex-direction: column;
+        float: left;
+        gap: 5px;
+    }
+
+    .form-conatiner-1 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .quote-form{
+        width: 90%;
+        margin: 2px;
+    }
+
+
+    #logout-button {
+        width: 100%; /* Full width button on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .container-nav {
+        width: 235%;
+        padding: 5px; /* Reduce padding on very small screens */
+    }
+
+    .master-container{
+        width: 235%;
+    }
+
+    #logout-button {
+        padding: 12px; /* Make button padding larger for touch targets */
+        font-size: 1rem; /* Consistent font size */
+    }
+
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+
+    .form-container {
+        flex-direction: column; /* Stack inputs vertically on small screens */
+        align-items: stretch; /* Stretch inputs to full width */
+    }
+
+    .input-css-size {
+        width: 50px; /* Smaller size input on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+
+    .dashboard {
+        width: 95%;
+        margin: 0px;
+    }
+    h1, h2 {
+        width: 60%;
+        font-size: 1.2rem; /* Smaller font size for headings */
+        text-align: center;
+    }
+
+    .gsm-paperMill-paperCode {
+        display: flex;
+        flex-direction: column;
+        float: left;
+        gap: 5px;
+    }
+
+    .form-conatiner-1 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .quote-form{
+        width: 90%;
+        margin: 2px;
+    }
+
+    .close-btn{
+        margin-top: 1205px;
+        margin-right: 20px;
+    }
+
+    .button {
+        width: 100%; /* Full width buttons on mobile */
+    }
+
+    input[type="text"],
+    select {
+        max-width: 100%; /* Full width for inputs on mobile */
+    }
+}

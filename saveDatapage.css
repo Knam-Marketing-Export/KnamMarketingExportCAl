@@ -1,0 +1,377 @@
+/* General body styles */
+body {
+    max-width: 1366px;
+    margin: 0;
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    font-family: Arial, sans-serif; /* Modern font */
+}
+
+/* Table styles */
+#savedDataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px; /* Slightly larger font size for readability */
+    color: #333;
+    background-color: #ffffff; /* White background for a cleaner look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+    border-radius: 8px; /* Rounded corners for a modern feel */
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+
+/* Table header styles */
+#savedDataTable thead {
+    background-color: #0056b3; /* Darker blue for a modern touch */
+    color: #ffffff;
+    text-align: left;
+}
+
+#savedDataTable th {
+    padding: 8px 12px; /* Reduced padding for a more compact look */
+    border-bottom: 2px solid #ddd; /* More pronounced bottom border */
+    font-weight: 600; /* Slightly heavier font weight */
+    text-transform: uppercase; /* Added text transformation for a clean look */
+}
+
+/* Table cell styles */
+#savedDataTable th, #savedDataTable td {
+    padding: 8px 12px; /* Reduced padding for a more compact look */
+    border-right: 1px solid #ddd; /* Right border for vertical separation */
+}
+
+#savedDataTable td {
+    text-align: center;
+}
+
+/* Alternating row colors and hover effects */
+#savedDataTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Subtle light grey for alternating rows */
+}
+
+#savedDataTable tbody tr:hover {
+    background-color: #e0e0e0; /* Lighter grey for hover effect */
+}
+
+/* Action buttons */
+#savedDataTable .actions {
+    display: flex;
+    justify-content: center;
+    gap: 6px; /* Reduced gap for a more compact look */
+}
+
+#savedDataTable .actions button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 6px 10px; /* Reduced padding for a more compact button */
+    text-align: center;
+    font-size: 12px; /* Slightly smaller font size for a compact button */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transition for scaling effect */
+}
+
+#savedDataTable .actions button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slight scaling on hover for a modern effect */
+}
+
+#savedDataTable .actions button.delete {
+    background-color: #dc3545;
+}
+
+#savedDataTable .actions button.delete:hover {
+    background-color: #c82333;
+}
+
+/* Input styles */
+input[type="checkbox"] {
+    width: 16px; /* Reduced size for a more compact look */
+    height: 16px; /* Reduced size for a more compact look */
+    margin-right: 6px; /* Reduced margin for a more compact look */
+    vertical-align: middle;
+    cursor: pointer; /* Ensures checkboxes are clickable */
+}
+
+input[type="text"] {
+    width: 80px; /* Reduced width for a more compact look */
+    padding: 4px; /* Reduced padding for a more compact look */
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* --------------------------------------------------------------------------------- */
+
+
+.column-toggle-section {
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    /* height: 30vh; */
+} 
+
+.column-toggle {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+}
+
+.column-toggle label {
+    flex: 0 1 198px; 
+    margin-bottom: 5px;
+}
+
+/* Style for larger checkboxes */
+input[type="checkbox"] {
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    margin-right: 8px;
+    vertical-align: middle; /* Align checkbox with text */
+    cursor: pointer; /* Indicate clickable area */
+    /* Ensure proper visual feedback */
+    outline: none; /* Remove default focus outline */
+}
+
+/* Increase clickable area around checkbox */
+.checkbox-wrapper {
+    display: inline-block; /* Ensure it wraps tightly around the checkbox */
+    padding: 1px; /* Increase clickable area */
+}
+
+/* Focus and hover states */
+input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 2px #0044cc; /* Blue outline for focus state */
+}
+
+input[type="checkbox"]:hover {
+    background-color: #e0e0e0; /* Light grey background on hover */
+}
+
+/* Custom checkbox appearance (if needed) */
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #0044cc; /* Checked state background */
+    border-color: #0044cc;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '✔'; /* Checkmark */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+}
+
+.toggle-button {
+    background-color: #ff8900; 
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #0056b3; 
+}
+
+table td {
+    position: relative;
+}
+
+table td[title] {
+    cursor: pointer;
+}
+
+
+/* Edit section */
+
+.container-edit-master {
+    position: fixed; /* Changed to fixed for better centering */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for actual center alignment */
+    margin-right: 0; /* Removed margin for centering */
+    padding: 20px;
+    width: 85%; /* Maintained width */
+    z-index: 1000;
+    transition: all 0.3s ease; /* Smooth transition for visibility changes */
+}
+
+.quote-form {
+    display: none; /* Hidden by default */
+    background-color: #fff;
+    border: 1px solid #ddd; /* Lighter border for subtle separation */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Changed to relative for positioning the close button */
+    max-width: 100%;
+}
+
+.quote-form .close-btn {
+    position: absolute; /* Positioning relative to the parent .quote-form */
+    top: 10px; /* Space from the top */
+    right: 10px; /* Space from the right */
+    background-color: #f44336; /* Red background for close button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+}
+.quote-form .close-btn:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+
+/* Edit section first row start */
+.edit-main-conatiner{
+    display: flex !important;
+}
+.edit-container-one{
+    border-right: 1px solid gray;
+    width: 50%;
+}
+.edit-save-quotation-first-row{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.edit-container{
+    display: flex;
+    align-items: center;
+}
+
+.edit-lable-first-row{
+    width: 45px;
+    font-size: 12px;
+}
+
+.lable-width-auto{
+    width: auto;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.edit-select{
+    width: 80px !important;
+    font-size: 13px !important;
+    height: 25px !important;
+}
+
+/* Edit section first row end */
+
+/* Edit section second row start */
+.editSecondRowCssSheetSize{
+    width: 45px !important;
+    height: 15px !important;
+    font-size: 13px !important;
+}
+
+.edit-lable-second-row{
+    width: 170px !important;
+    font-size: 12px !important;
+}
+
+.editSecondRowCss{
+    width: 60px !important;
+    height: 15px !important;
+    font-size: 13px !important;
+}
+/* Edit section first row end */
+
+/* Edit section third row start */
+#editResults{
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#editResults p {
+    font-size: 1em;
+    margin: 10px 0;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    /* width: 400px; */
+}
+/* Edit section third row end */
+
+.edit-container-two{
+    width: 50%;
+    margin-left: 5px;
+}
+
+.edit-input-select{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.editcurrency-css{
+    width: 60px !important;
+    font-size: 12px !important;
+    height: 25px !important;
+}
+
+.edit-container-sub{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-container-main{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-save-quotation-edit-mater-fourth-row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#edit-save-button{
+    padding: 10px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+#edit-save-button:hover{
+    background-color: #0056b3;
+}

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Calculator Master</title>
+    <link rel="stylesheet" href="master.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1220.0.min.js"></script>
+    <script src="https://unpkg.com/amazon-cognito-identity-js@6.2.0/dist/amazon-cognito-identity.min.js"></script>
+</head>
+
+<body>
+    <section class="nav">
+        <div class="container-nav">
+            <div class="img-knam">
+                <img src="knam cal logo.png" alt="">
+            </div>
+            <div class="company-name">
+                <h1>Knam Marketing</h1>
+            </div>
+        </div>
+    </section>
+    <section class="home-section">
+        <div class="home-container">
+            <a href="Knam-Export-cost-calculator.html"><button>Home</button></a>
+        </div>
+    </section>
+
+    <section class="saveButtonSection">
+        <div class="save-button">
+            <button type="button" id="save-button">Save changes</button>
+        </div>
+    </section>
+    <section class="master-section">
+        <div class="master-container">
+            <!-- Other sections remain unchanged -->
+
+            <div class="master-box-exchange">
+                <label for="exchangeRate">Exchange Rate:</label>
+                <input type="number" id="exchangeRate" class="input-css">
+            </div>
+
+            <!-- Paper Cost Sheets 360 -->
+            <div class="master-box-paper-cost">
+                <div class="paper-cost-sheet">
+                    <div class="paper-cost-sheet-heading">
+                        <h1>Paper cost sheet 360</h1>
+                    </div>
+                    <!-- 18 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="18-GSM">18 GSM</label>
+                        <input type="number" id="18gsm" placeholder="18 GSM">
+                        <input type="number" id="18paperCost" required>
+                        <select id="18paperCostCurrency">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="18gsmUSDResult"></p>
+                        <p id="18gsmINRResult"></p><br>
+                    </div>
+                    <!-- 22 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="22-GSM">22 GSM</label>
+                        <input type="number" id="22gsm" placeholder="22 GSM">
+                        <input type="number" id="22paperCost" required>
+                        <select id="22paperCostCurrency">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="22gsmUSDResult"></p>
+                        <p id="22gsmINRResult"></p><br>
+                    </div>
+                    <!-- 25 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="25-GSM">25 GSM</label>
+                        <input type="number" id="25gsm" placeholder="25 GSM">
+                        <input type="number" id="25paperCost" required>
+                        <select id="25paperCostCurrency">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="25gsmUSDResult"></p>
+                        <p id="25gsmINRResult"></p><br>
+                    </div>
+                    <!-- 35 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="35-GSM">35 GSM</label>
+                        <input type="number" id="35gsm" placeholder="35 GSM">
+                        <input type="number" id="35paperCost" required>
+                        <select id="35paperCostCurrency">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="35gsmUSDResult"></p>
+                        <p id="35gsmINRResult"></p><br>
+                    </div>
+                    <!-- 45 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="45-GSM">45 GSM</label>
+                        <input type="number" id="45gsm" placeholder="45 GSM">
+                        <input type="number" id="45paperCost" required>
+                        <select id="45paperCostCurrency">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="45gsmUSDResult"></p>
+                        <p id="45gsmINRResult"></p><br>
+                    </div>
+                </div>
+            </div>
+            <!-- Paper Cost Sheets 880 / 3000 -->
+            <div class="master-box-paper-cost">
+                <div class="paper-cost-sheet">
+                    <div class="paper-cost-sheet-heading">
+                        <h1>Paper cost sheet 880 / 3000</h1>
+                    </div>
+                    <!-- 17 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="17-GSM-880-3000">17 GSM</label>
+                        <input type="number" id="17gsm8803000" placeholder="17 GSM">
+                        <input type="number" id="17paperCost8803000" required>
+                        <select id="17paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="17gsm3000USDResult"></p>
+                        <p id="17gsm3000INRResult"></p><br>
+                    </div>
+                    <!-- 18 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="18-GSM-880-3000">18 GSM</label>
+                        <input type="number" id="18gsm8803000" placeholder="18 GSM">
+                        <input type="number" id="18paperCost8803000" required>
+                        <select id="18paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="18gsm3000USDResult"></p>
+                        <p id="18gsm3000INRResult"></p><br>
+                    </div>
+                    <!-- 22 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="22-GSM-880-3000">22 GSM</label>
+                        <input type="number" id="22gsm8803000" placeholder="22 GSM">
+                        <input type="number" id="22paperCost8803000" required>
+                        <select id="22paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="22gsm3000USDResult"></p>
+                        <p id="22gsm3000INRResult"></p><br>
+                    </div>
+                    <!-- 25 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="25-GSM-880-3000">25 GSM</label>
+                        <input type="number" id="25gsm8803000" placeholder="25 GSM">
+                        <input type="number" id="25paperCost8803000" required>
+                        <select id="25paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="25gsm3000USDResult"></p>
+                        <p id="25gsm3000INRResult"></p><br>
+                    </div>
+                    <!-- 35 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="35-GSM-880-3000">35 GSM</label>
+                        <input type="number" id="35gsm8803000" placeholder="35 GSM">
+                        <input type="number" id="35paperCost8803000" required>
+                        <select id="35paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="35gsm3000USDResult"></p>
+                        <p id="35gsm3000INRResult"></p><br>
+                    </div>
+                    <!-- 45 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="45-GSM-880-3000">45 GSM</label>
+                        <input type="number" id="45gsm8803000" placeholder="45 GSM">
+                        <input type="number" id="45paperCost8803000" required>
+                        <select id="45paperCostCurrency8803000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="45gsm3000USDResult"></p>
+                        <p id="45gsm3000INRResult"></p><br>
+                    </div>
+                </div>
+            </div>
+            <!-- Paper Cost Sheets 880 / 5000 -->
+            <div class="master-box-paper-cost">
+                <div class="paper-cost-sheet">
+                    <div class="paper-cost-sheet-heading">
+                        <h1>Paper cost sheet 880 / 5000</h1>
+                    </div>
+                    <!-- 17 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="17-GSM-880-5000">17 GSM</label>
+                        <input type="number" id="17gsm8805000" placeholder="17 GSM">
+                        <input type="number" id="17paperCost8805000" required>
+                        <select id="17paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="17gsm5000USDResult"></p>
+                        <p id="17gsm5000INRResult"></p><br>
+                    </div>
+                    <!-- 18 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="18-GSM-880-5000">18 GSM</label>
+                        <input type="number" id="18gsm8805000" placeholder="18 GSM">
+                        <input type="number" id="18paperCost8805000" required>
+                        <select id="18paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="18gsm5000USDResult"></p>
+                        <p id="18gsm5000INRResult"></p><br>
+                    </div>
+                    <!-- 22 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="22-GSM-880-5000">22 GSM</label>
+                        <input type="number" id="22gsm8805000" placeholder="22 GSM">
+                        <input type="number" id="22paperCost8805000" required>
+                        <select id="22paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="22gsm5000USDResult"></p>
+                        <p id="22gsm5000INRResult"></p><br>
+                    </div>
+                    <!-- 25 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="25-GSM-880-5000">25 GSM</label>
+                        <input type="number" id="25gsm8805000" placeholder="25 GSM">
+                        <input type="number" id="25paperCost8805000" required>
+                        <select id="25paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="25gsm5000USDResult"></p>
+                        <p id="25gsm5000INRResult"></p><br>
+                    </div>
+                    <!-- 35 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="35-GSM-880-5000">35 GSM</label>
+                        <input type="number" id="35gsm8805000" placeholder="35 GSM">
+                        <input type="number" id="35paperCost8805000" required>
+                        <select id="35paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="35gsm5000USDResult"></p>
+                        <p id="35gsm5000INRResult"></p><br>
+                    </div>
+                    <!-- 45 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="45-GSM-880-5000">45 GSM</label>
+                        <input type="number" id="45gsm8805000" placeholder="45 GSM">
+                        <input type="number" id="45paperCost8805000" required>
+                        <select id="45paperCostCurrency8805000">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="45gsm5000USDResult"></p>
+                        <p id="45gsm5000INRResult"></p><br>
+                    </div>
+                </div>
+            </div>
+            <!-- Paper Cost Sheets 880 / 300030 witout sheet cost -->
+            <div class="master-box-paper-cost">
+                <div class="paper-cost-sheet">
+                    <div class="paper-cost-sheet-heading">
+                        <h1>Paper cost sheet 880 / 3000 BAHL</h1>
+                    </div>
+                    <!-- 17 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="17-GSM-880-300030">17 GSM</label>
+                        <input type="number" id="17gsm880300030" placeholder="17 GSM">
+                        <input type="number" id="17paperCost880300030" required>
+                        <select id="17paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="17gsm300030USDResult"></p>
+                        <p id="17gsm300030INRResult"></p><br>
+                    </div>
+                    <!-- 18 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="18-GSM-880-300030">18 GSM</label>
+                        <input type="number" id="18gsm880300030" placeholder="18 GSM">
+                        <input type="number" id="18paperCost880300030" required>
+                        <select id="18paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="18gsm300030USDResult"></p>
+                        <p id="18gsm300030INRResult"></p><br>
+                    </div>
+                    <!-- 22 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="22-GSM-880-300030">22 GSM</label>
+                        <input type="number" id="22gsm880300030" placeholder="22 GSM">
+                        <input type="number" id="22paperCost880300030" required>
+                        <select id="22paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="22gsm300030USDResult"></p>
+                        <p id="22gsm300030INRResult"></p><br>
+                    </div>
+                    <!-- 25 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="25-GSM-880-300030">25 GSM</label>
+                        <input type="number" id="25gsm880300030" placeholder="25 GSM">
+                        <input type="number" id="25paperCost880300030" required>
+                        <select id="25paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="25gsm300030USDResult"></p>
+                        <p id="25gsm300030INRResult"></p><br>
+                    </div>
+                    <!-- 35 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="35-GSM-880-300030">35 GSM</label>
+                        <input type="number" id="35gsm880300030" placeholder="35 GSM">
+                        <input type="number" id="35paperCost880300030" required>
+                        <select id="35paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="35gsm300030USDResult"></p>
+                        <p id="35gsm300030INRResult"></p><br>
+                    </div>
+                    <!-- 45 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="45-GSM-880-300030">45 GSM</label>
+                        <input type="number" id="45gsm880300030" placeholder="45 GSM">
+                        <input type="number" id="45paperCost880300030" required>
+                        <select id="45paperCostCurrency880300030">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="45gsm300030USDResult"></p>
+                        <p id="45gsm300030INRResult"></p><br>
+                    </div>
+                </div>
+            </div>
+            <!-- Paper Cost Sheets 880 / 5000 witout sheet cost -->
+            <div class="master-box-paper-cost">
+                <div class="paper-cost-sheet">
+                    <div class="paper-cost-sheet-heading">
+                        <h1>Paper cost sheet 880 / 5000 BAHL</h1>
+                    </div>
+                    <!-- 17 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="17-GSM-880-500050">17 GSM</label>
+                        <input type="number" id="17gsm880500050" placeholder="17 GSM">
+                        <input type="number" id="17paperCost880500050" required>
+                        <select id="17paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="17gsm500050USDResult"></p>
+                        <p id="17gsm500050INRResult"></p><br>
+                    </div>
+                    <!-- 18 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="18-GSM-880-500005">18 GSM</label>
+                        <input type="number" id="18gsm880500050" placeholder="18 GSM">
+                        <input type="number" id="18paperCost880500050" required>
+                        <select id="18paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="18gsm500050USDResult"></p>
+                        <p id="18gsm500050INRResult"></p><br>
+                    </div>
+                    <!-- 22 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="22-GSM-880-500050">22 GSM</label>
+                        <input type="number" id="22gsm880500050" placeholder="22 GSM">
+                        <input type="number" id="22paperCost880500050" required>
+                        <select id="22paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="22gsm500050USDResult"></p>
+                        <p id="22gsm500050INRResult"></p><br>
+                    </div>
+                    <!-- 25 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="25-GSM-880-500050">25 GSM</label>
+                        <input type="number" id="25gsm880500050" placeholder="25 GSM">
+                        <input type="number" id="25paperCost880500050" required>
+                        <select id="25paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="25gsm500050USDResult"></p>
+                        <p id="25gsm500050INRResult"></p><br>
+                    </div>
+                    <!-- 35 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="35-GSM-880-500050">35 GSM</label>
+                        <input type="number" id="35gsm880500050" placeholder="35 GSM">
+                        <input type="number" id="35paperCost880500050" required>
+                        <select id="35paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="35gsm500050USDResult"></p>
+                        <p id="35gsm500050INRResult"></p><br>
+                    </div>
+                    <!-- 45 GSM -->
+                    <div class="select-gsm-0">
+                        <label for="45-GSM-880-500050">45 GSM</label>
+                        <input type="number" id="45gsm880500050" placeholder="45 GSM">
+                        <input type="number" id="45paperCost880500050" required>
+                        <select id="45paperCostCurrency880500050">
+                            <option value="INR">INR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                        <p id="45gsm500050USDResult"></p>
+                        <p id="45gsm500050INRResult"></p><br>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freight Costs -->
+            <div class="freight-cost-sheet">
+                <div class="freight-cost-sheet-heading">
+                    <h1>Freight sheet</h1>
+                </div>
+                <!-- Jebel-Ali -->
+                <div class="select-freight-0">
+                    <label for="JebelAli">Jebel-Ali</label>
+                    <input type="text" id="JebelAli" placeholder="Jebel-Ali">
+                    <input type="number" id="JebelAliFreight" required>
+                    <select id="JebelAliFreightCurrency">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <p id="JebelAliFreightUSDResult"></p>
+                    <p id="JebelAliFreightINRResult"></p><br>
+                </div>
+                <!-- Sohar -->
+                <div class="select-freight-0">
+                    <label for="sohar">Sohar</label>
+                    <input type="text" id="sohar" placeholder="Sohar">
+                    <input type="number" id="soharFreight" required>
+                    <select id="soharFreightCurrency">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <p id="soharFreightUSDResult"></p>
+                    <p id="soharFreightINRResult"></p><br>
+                </div>
+                <!-- Dammam -->
+                <div class="select-freight-0">
+                    <label for="dammam">Dammam</label>
+                    <input type="text" id="dammam" placeholder="Dammam">
+                    <input type="number" id="dammamFreight" required>
+                    <select id="dammamFreightCurrency">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <p id="dammamFreightUSDResult"></p>
+                    <p id="dammamFreightINRResult"></p><br>
+                </div>
+                <!-- Riyadh -->
+                <div class="select-freight-0">
+                    <label for="riyadh">Riyadh</label>
+                    <input type="text" id="riyadh" placeholder="Riyadh">
+                    <input type="number" id="riyadhFreight" required>
+                    <select id="riyadhFreightCurrency">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <p id="riyadhFreightUSDResult"></p>
+                    <p id="riyadhFreightINRResult"></p><br>
+                </div>
+                <!-- Shuwaikh -->
+                <div class="select-freight-0">
+                    <label for="shuwaikh">Shuwaikh</label>
+                    <input type="text" id="shuwaikh" placeholder="Shuwaikh">
+                    <input type="number" id="shuwaikhFreight" required>
+                    <select id="shuwaikhFreightCurrency">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                    </select>
+                    <p id="shuwaikhFreightUSDResult"></p>
+                    <p id="shuwaikhFreightINRResult"></p><br>
+                </div>
+            </div>
+
+            <!-- Miscellaneous -->
+            <div class="master-box">
+                <label for="sheetingCost">Sheeting Cost per Kg (INR):</label>
+                <input type="number" id="sheetingCost" required><br>
+            </div>
+            <div class="master-box">
+                <label for="boxPrice">Box Price per box (INR):</label>
+                <input type="number" id="boxPrice" required><br>
+            </div>
+            <div class="master-box">
+                <label for="wrappersPrice">Wrappers Price per wrapper (INR):</label>
+                <input type="number" id="wrappersPrice" required><br>
+            </div>
+            <div class="master-box">
+                <label for="localFreight">Local Freight per MT (INR):</label>
+                <input type="number" id="localFreight" required><br>
+            </div>
+            <div class="master-box">
+                <label for="miscellaneous">Miscellaneous per MT (USD):</label>
+                <input type="number" id="miscellaneous" required><br>
+            </div>
+            <div class="master-box">
+                <label for="margin">Margin:</label>
+                <input type="number" id="margin"><br>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1220.0.min.js"></script>
+    <script src="getdata.js"></script>
+    <script src="checkAccess.js"></script>
+
+
+</body>
+
+</html>
