@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knam login</title>
+    <link rel="stylesheet" href="loginpage.css">
+</head>
+<body>
+    <section class="nav">
+        <div class="company-name">
+            <h1 id="firstHeading">Export Cost Calculator</h1>
+        </div>
+        <div class="container-nav">
+            <div class="img-knam">
+                <img src="knam cal logo.png" alt="">
+            </div>
+
+        </div>
+    </section>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Username:</label>
+                <input type="email" id="email" placeholder="Enter you Email ID" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your Password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Invalid login details. Please try again.</p>
+    </div>
+    <script src="loginpage.js"></script>
+</body>
+</html>
