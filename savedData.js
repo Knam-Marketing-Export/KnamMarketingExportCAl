@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Conditionally render both Edit and Delete buttons for admins only
             let actions = '<td class="actions">';
-            if (user && user.isAdmin) {
+            if (user && (user.isAdmin || user.role === 'Harish')) {
                 actions += `
                 <button onclick="editRow('${item.ID}')">Edit</button>
                 <button onclick="deleteRow('${item.ID}')">Delete</button>
