@@ -17,6 +17,187 @@ AWS.config.update({
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 document.addEventListener('DOMContentLoaded', function () {
+    function updatePriceBasedOnSelections() {
+        // Get the selected values
+        const selectedGSM = document.getElementById('editGsmSelect').value;
+        const selectedPaperCode = document.getElementById('editPaperMillSelect').value;
+        const selectedPaperMill = document.getElementById('editPapercodeSelect').value;
+        const selectedPaperMillBhal = document.getElementById('editPaperMillBhal').value;
+
+        // Check if a valid PaperMill is selected when PaperCode is 880
+        if (selectedPaperCode === '880' && selectedPaperMill === 'select') {
+            alert('Please select a valid PaperMill.');
+            return;
+        }
+
+        // Construct the key to query DynamoDB
+        const params = {
+            TableName: 'masterDataExportCal',
+            Key: {
+                "GSM_PaperMill_PaperCode": "184536088030005000",
+                "Date": "03-09-2024" // Use the date format as per your table schema
+            }
+        };
+
+        // Query DynamoDB
+        dynamodb.get(params, (err, data) => {
+            if (err) {
+                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+            } else {
+                // Log the full response to inspect its structure
+                // console.log('Data retrieved:', JSON.stringify(data, null, 2));
+
+                const item = data.Item;
+                const costSheet = item && item.CostSheets;
+                let paperCostKey = '';
+
+                if (costSheet) {
+                    if (selectedPaperCode === '360') {
+                        // If 360 is selected, use paperCost360
+                        paperCostKey = `PaperCostSheets360`;
+                    } else if (selectedPaperCode === '880') {
+                        // If 880 is selected, map to PaperMill and PaperMillBhal
+                        if (selectedPaperMillBhal === 'bahl') {
+                            // If Bahl is selected, append 30 or 50 to PaperMill
+                            if (selectedPaperMill === '3000') {
+                                paperCostKey = 'PaperCostSheets880300030';
+                            } else if (selectedPaperMill === '5000') {
+                                paperCostKey = 'PaperCostSheets880300050';
+                            }
+                        } else {
+                            // If Other is selected, use regular mapping
+                            if (selectedPaperMill === '3000') {
+                                paperCostKey = 'PaperCostSheets8803000';
+                            } else if (selectedPaperMill === '5000') {
+                                paperCostKey = 'PaperCostSheets8805000';
+                            }
+                        }
+                    }
+
+                    // Now check if the correct key exists in the data
+                    if (paperCostKey && costSheet[paperCostKey] && costSheet[paperCostKey][`${selectedGSM}GSM`]) {
+                        const paperCostData = costSheet[paperCostKey][`${selectedGSM}GSM`];
+
+                        console.log(paperCostData);
+
+
+                        // Populate the input fields with the retrieved data
+                        document.getElementById('editPaperCost').value = paperCostData.Cost || '';
+                        document.getElementById('editpaperCostCurrency').value = paperCostData.Currency || 'INR'; // Default to INR if no currency is found
+                    } else {
+                        // Clear the fields if no data is found
+                        document.getElementById('editPaperCost').value = '';
+                        document.getElementById('editpaperCostCurrency').value = 'INR'; // Default to INR
+                    }
+                }
+            }
+        });
+    }
+    // -----------------------------------------------------------------------
+    const editExchangeRate = document.getElementById('editExchangeRate');
+    const editPaperCode = document.getElementById('editPaperMillSelect');
+    const editPaperMill = document.getElementById('editPapercodeSelect');
+    const editPaperMillBahl = document.getElementById('editPaperMillBhal');
+    const editPaperCost = document.getElementById('editPaperCost');
+    const editFreightCost = document.getElementById('editFreightCost');
+    const editReamPerCarton = document.getElementById('editReamPerCarton');
+    const editWeightOfReam = document.getElementById('editReamWeight');
+    const editSheettingPrice = document.getElementById('editEditMastersheettingPrice');
+    const editWrapperPrice = document.getElementById('editEditMasterwrapperPrice');
+    const editBoxPrice = document.getElementById('editEditMasterboxPrice');
+    const editMarginPrice = document.getElementById('editEditMastermarginPrice');
+    const editLocalFreight = document.getElementById('editEditMasterLocalFreight');
+    const editMiscellaneous = document.getElementById('editEditMasterMiscellaneous');
+
+    // Example calculation formula
+    function EditcalculateResults() {
+        const exRate = parseFloat(editExchangeRate.value) || 0;
+        const paperCost = parseFloat(editPaperCost.value) || 0;
+        const freightCost = parseFloat(editFreightCost.value) || 0;
+        const EditRpc = parseFloat(editReamPerCarton.value) || 0;
+        const EditRw = parseFloat(editWeightOfReam.value) || 0;
+
+        console.log(exRate);
+        console.log(paperCost);
+        console.log(freightCost);
+
+        const weightOfCartonEdit = EditRw * EditRpc;
+        const onOfwrapperPerTonEdit = 1000 / EditRw;
+        const onOfCartonPerTonEdit = 1000 / weightOfCartonEdit;
+
+        const sheetingPrice = (parseFloat(editSheettingPrice.value) * 1000) / exRate || 0;
+        const wrapperPrice = (parseFloat(editWrapperPrice.value) * onOfwrapperPerTonEdit) / exRate || 0;
+        const boxPrice = (parseFloat(editBoxPrice.value) * onOfCartonPerTonEdit) / exRate || 0;
+        const marginPrice = parseFloat(editMarginPrice.value) || 0;
+        const localFreight = parseFloat(editLocalFreight.value) / exRate || 0;
+        const miscellaneous = parseFloat(editMiscellaneous.value) || 0;
+
+        // Get currency values
+        const editPaperCurrency = document.getElementById('editpaperCostCurrency').value;
+        const editFreightCurrency = document.getElementById('editfreightCostCurrency').value;
+
+        // Convert paper cost and freight cost to USD if they are in INR
+        const editPaperCostInUSD = editPaperCurrency === 'INR' ? paperCost / exRate : paperCost;
+        const editFreightCostInUSD = editFreightCurrency === 'INR' ? freightCost / exRate / 23.5 : freightCost;
+
+        // console.log(editPaperCostInUSD);
+        // console.log(editFreightCostInUSD);
+
+
+        // Calculate the result based on your formula
+        const totalCost = editPaperCostInUSD + editFreightCostInUSD + sheetingPrice + wrapperPrice + boxPrice + localFreight + miscellaneous;
+        const pricePerMtEdit = totalCost + marginPrice;
+        const pricePerBoxEdit = pricePerMtEdit / onOfCartonPerTonEdit;
+
+        console.log(editPaperCostInUSD);
+        console.log(editFreightCostInUSD);
+        console.log(sheetingPrice);
+        console.log(wrapperPrice);
+        console.log(boxPrice);
+        console.log(marginPrice);
+        console.log(localFreight);
+        console.log(miscellaneous);
+
+
+        // Update the results in the DOM
+        // Set the total cost text
+        const totalCostElement = document.getElementById('editTotalCost');
+        totalCostElement.innerText = totalCost.toFixed(2) + ' $ USD';
+
+        // Apply red color if totalCost is less than 800
+        if (totalCost < 800) {
+            totalCostElement.style.color = 'red';
+        } else {
+            totalCostElement.style.color = ''; // Reset to default if totalCost >= 800
+        }
+        // Add more calculations and updates as needed
+        document.getElementById('editPricePerMT').innerText = pricePerMtEdit.toFixed(2) + ' $ USD';
+        document.getElementById('editPricePerBox').innerText = pricePerBoxEdit.toFixed(2) + ' $ USD';
+    }
+
+    // Add event listeners to trigger the calculation when any input changes
+    [editExchangeRate, editPaperCode, editPaperCost, editFreightCost, editReamPerCarton, editWeightOfReam, editSheettingPrice, editWrapperPrice, editBoxPrice, editMarginPrice, editLocalFreight, editMiscellaneous].forEach(input => {
+        input.addEventListener('input', EditcalculateResults);
+    });
+
+    // Initial calculation
+    document.getElementById('edit-convert-button').addEventListener('click', EditcalculateResults);
+
+
+    // ---------------------------------------------------------------------------------------------
+    // Add event listeners to update price based on any change in selections
+    document.getElementById('editGsmSelect').addEventListener('change', updatePriceBasedOnSelections);
+    document.getElementById('editPaperMillSelect').addEventListener('change', updatePriceBasedOnSelections);
+    document.getElementById('editPapercodeSelect').addEventListener('change', updatePriceBasedOnSelections);
+    document.getElementById('editPaperMillBhal').addEventListener('change', updatePriceBasedOnSelections);
+
+});
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
     const table = document.getElementById('savedDataTable');
     const columnToggleSection = document.getElementById('columnToggleSection');
     const toggleButton = document.querySelector('.toggle-button');
@@ -264,6 +445,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const paperCost = document.getElementById('editPaperCost').value;
         const freightPort = document.getElementById('editfreightSelect').value;
         const freightCost = document.getElementById('editFreightCost').value;
+        const totalCost = document.getElementById('editTotalCost').innerText;
+        const pricePerMt = document.getElementById('editPricePerMT').innerText;
+        const pricePerBox = document.getElementById('editPricePerBox').innerText;
         const sheetingCost = document.getElementById('editEditMastersheettingPrice').value;
         const wrappersPrice = document.getElementById('editEditMasterwrapperPrice').value;
         const boxPrice = document.getElementById('editEditMasterboxPrice').value;
@@ -280,6 +464,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const validatedWeightOfReam = parseFloat(weightOfReam) || 0;
         const validatedPaperCost = parseFloat(paperCost) || 0;
         const validatedFreightCost = parseFloat(freightCost) || 0;
+        const validatedtotalCost = parseFloat(totalCost) || 0;
+        const validatedPricePerMt = parseFloat(pricePerMt) || 0;
+        const validatedPricePerBox = parseFloat(pricePerBox) || 0;
         const validatedSheetingCost = parseFloat(sheetingCost) || 0;
         const validatedWrappersPrice = parseFloat(wrappersPrice) || 0;
         const validatedBoxPrice = parseFloat(boxPrice) || 0;
@@ -297,7 +484,8 @@ document.addEventListener('DOMContentLoaded', function () {
                            PaperMill = :paperMill, PaperCode = :paperCode, SheetingPlace = :sheetingPlace,
                            SheetingLength = :sheetingLength, SheetingWidth = :sheetingWidth, NoOfSheet = :noOfSheet,
                            NoOfReam = :noOfReam, WeightOfReam = :weightOfReam, PaperCost = :paperCost,
-                           FreightPort = :freightPort, FreightCost = :freightCost, SheetingCost = :sheetingCost,
+                           FreightPort = :freightPort, FreightCost = :freightCost, PricePerBox = :pricePerBox, PricePerMT = :pricePerMt,
+                           TotalCost = :totalCost, SheetingCost = :sheetingCost,
                            WrappersPrice = :wrappersPrice, BoxPrice = :boxPrice, LocalFreight = :localFreight,
                            Miscellaneous = :miscellaneous, Margin = :margin, Customer = :customer`,
             ExpressionAttributeValues: {
@@ -315,6 +503,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 ':paperCost': validatedPaperCost,
                 ':freightPort': freightPort,
                 ':freightCost': validatedFreightCost,
+                ':totalCost': validatedtotalCost,
+                ':pricePerMt': validatedPricePerMt,
+                ':pricePerBox': validatedPricePerBox,
                 ':sheetingCost': validatedSheetingCost,
                 ':wrappersPrice': validatedWrappersPrice,
                 ':boxPrice': validatedBoxPrice,
@@ -515,169 +706,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadColumnVisibilitySettings();
 });
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const editExchangeRate = document.getElementById('editExchangeRate');
-    const editPaperCost = document.getElementById('editPaperCost');
-    const editFreightCost = document.getElementById('editFreightCost');
-    const editReamPerCarton = document.getElementById('editReamPerCarton');
-    const editWeightOfReam = document.getElementById('editReamWeight');
-    const editSheettingPrice = document.getElementById('editEditMastersheettingPrice');
-    const editWrapperPrice = document.getElementById('editEditMasterwrapperPrice');
-    const editBoxPrice = document.getElementById('editEditMasterboxPrice');
-    const editMarginPrice = document.getElementById('editEditMastermarginPrice');
-    const editLocalFreight = document.getElementById('editEditMasterLocalFreight');
-    const editMiscellaneous = document.getElementById('editEditMasterMiscellaneous');
-
-    // Example calculation formula
-    function EditcalculateResults() {
-        const exRate = parseFloat(editExchangeRate.value) || 0;
-        const paperCost = parseFloat(editPaperCost.value) || 0;
-        const freightCost = parseFloat(editFreightCost.value) || 0;
-        const EditRpc = parseFloat(editReamPerCarton.value) || 0;
-        const EditRw = parseFloat(editWeightOfReam.value) || 0;
-
-        console.log(exRate);
-        console.log(freightCost);
-
-        const weightOfCartonEdit = EditRw * EditRpc;
-        const onOfwrapperPerTonEdit = 1000 / EditRw;
-        const onOfCartonPerTonEdit = 1000 / weightOfCartonEdit;
-
-        const sheetingPrice = (parseFloat(editSheettingPrice.value) * 1000) / exRate || 0;
-        const wrapperPrice = (parseFloat(editWrapperPrice.value) * onOfwrapperPerTonEdit) / exRate || 0;
-        const boxPrice = (parseFloat(editBoxPrice.value) * onOfCartonPerTonEdit) / exRate || 0;
-        const marginPrice = parseFloat(editMarginPrice.value) || 0;
-        const localFreight = parseFloat(editLocalFreight.value) / exRate || 0;
-        const miscellaneous = parseFloat(editMiscellaneous.value) || 0;
-
-        // Get currency values
-        const editPaperCurrency = document.getElementById('editpaperCostCurrency').value;
-        const editFreightCurrency = document.getElementById('editfreightCostCurrency').value;
-
-        // Convert paper cost and freight cost to USD if they are in INR
-        const editPaperCostInUSD = editPaperCurrency === 'INR' ? paperCost / exRate : paperCost;
-        const editFreightCostInUSD = editFreightCurrency === 'INR' ? freightCost / exRate / 23.5 : freightCost;
-
-        // console.log(editPaperCostInUSD);
-        // console.log(editFreightCostInUSD);
-
-
-        // Calculate the result based on your formula
-        const totalCost = editPaperCostInUSD + editFreightCostInUSD + sheetingPrice + wrapperPrice + boxPrice + localFreight + miscellaneous;
-        const pricePerMtEdit = totalCost + marginPrice;
-        const pricePerBoxEdit = pricePerMtEdit / onOfCartonPerTonEdit;
-
-        console.log(editPaperCostInUSD);
-        console.log(editFreightCostInUSD);
-        console.log(sheetingPrice);
-        console.log(wrapperPrice);
-        console.log(boxPrice);
-        console.log(marginPrice);
-        console.log(localFreight);
-        console.log(miscellaneous);
-
-
-        // Update the results in the DOM
-        document.getElementById('editTotalCost').innerText = totalCost.toFixed(2) + ' $ USD';
-        // Add more calculations and updates as needed
-        document.getElementById('editPricePerMT').innerText = pricePerMtEdit.toFixed(2) + ' $ USD';
-        document.getElementById('editPricePerBox').innerText = pricePerBoxEdit.toFixed(2) + ' $ USD';
-    }
-
-    // Add event listeners to trigger the calculation when any input changes
-    [editExchangeRate, editPaperCost, editFreightCost, editReamPerCarton, editWeightOfReam, editSheettingPrice, editWrapperPrice, editBoxPrice, editMarginPrice, editLocalFreight, editMiscellaneous].forEach(input => {
-        input.addEventListener('input', EditcalculateResults);
-    });
-
-    // Initial calculation
-    EditcalculateResults();
-
-});
-
-function updatePriceBasedOnSelections() {
-    // Get the selected values
-    const selectedGSM = document.getElementById('editGsmSelect').value;
-    const selectedPaperCode = document.getElementById('editPaperMillSelect').value;
-    const selectedPaperMill = document.getElementById('editPapercodeSelect').value;
-    const selectedPaperMillBhal = document.getElementById('editPaperMillBhal').value;
-
-    // Check if a valid PaperMill is selected when PaperCode is 880
-    if (selectedPaperCode === '880' && selectedPaperMill === 'select') {
-        alert('Please select a valid PaperMill.');
-        return;
-    }
-
-    // Construct the key to query DynamoDB
-    const params = {
-        TableName: 'masterDataExportCal',
-        Key: {
-            "GSM_PaperMill_PaperCode": "184536088030005000",
-            "Date": "03-09-2024" // Use the date format as per your table schema
-        }
-    };
-
-    // Query DynamoDB
-    dynamodb.get(params, (err, data) => {
-        if (err) {
-            console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
-        } else {
-            // Log the full response to inspect its structure
-            // console.log('Data retrieved:', JSON.stringify(data, null, 2));
-
-            const item = data.Item;
-            const costSheet = item && item.CostSheets;
-            let paperCostKey = '';
-
-            if (costSheet) {
-                if (selectedPaperCode === '360') {
-                    // If 360 is selected, use paperCost360
-                    paperCostKey = `PaperCostSheets360`;
-                } else if (selectedPaperCode === '880') {
-                    // If 880 is selected, map to PaperMill and PaperMillBhal
-                    if (selectedPaperMillBhal === 'bahl') {
-                        // If Bahl is selected, append 30 or 50 to PaperMill
-                        if (selectedPaperMill === '3000') {
-                            paperCostKey = 'PaperCostSheets880300030';
-                        } else if (selectedPaperMill === '5000') {
-                            paperCostKey = 'PaperCostSheets880300050';
-                        }
-                    } else {
-                        // If Other is selected, use regular mapping
-                        if (selectedPaperMill === '3000') {
-                            paperCostKey = 'PaperCostSheets8803000';
-                        } else if (selectedPaperMill === '5000') {
-                            paperCostKey = 'PaperCostSheets8805000';
-                        }
-                    }
-                }
-
-                // Now check if the correct key exists in the data
-                if (paperCostKey && costSheet[paperCostKey] && costSheet[paperCostKey][`${selectedGSM}GSM`]) {
-                    const paperCostData = costSheet[paperCostKey][`${selectedGSM}GSM`];
-
-                    console.log(paperCostData);
-
-
-                    // Populate the input fields with the retrieved data
-                    document.getElementById('editPaperCost').value = paperCostData.Cost || '';
-                    document.getElementById('editpaperCostCurrency').value = paperCostData.Currency || 'INR'; // Default to INR if no currency is found
-                } else {
-                    // Clear the fields if no data is found
-                    document.getElementById('editPaperCost').value = '';
-                    document.getElementById('editpaperCostCurrency').value = 'INR'; // Default to INR
-                }
-            }
-        }
-    });
-}
-
-// Add event listeners to update price based on any change in selections
-document.getElementById('editGsmSelect').addEventListener('change', updatePriceBasedOnSelections);
-document.getElementById('editPaperMillSelect').addEventListener('change', updatePriceBasedOnSelections);
-document.getElementById('editPapercodeSelect').addEventListener('change', updatePriceBasedOnSelections);
-document.getElementById('editPaperMillBhal').addEventListener('change', updatePriceBasedOnSelections);
 
 document.addEventListener('DOMContentLoaded', function () {
     const table = document.getElementById('savedDataTable');
