@@ -51,7 +51,12 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
             if (userFound) {
                 // Store user role in local storage
-                localStorage.setItem('user', JSON.stringify({ email, role: userRole, isAdmin: userRole === 'Admin' }));
+                               localStorage.setItem('user', JSON.stringify({
+                    email, 
+                    role: userRole,
+                    isAdmin: userRole === 'Admin',   // 'Admin' has admin privileges
+                    isHarish: userRole === 'Harish'  // 'Harish' has a separate flag
+                }));
                 
                 // Redirect based on role
                 switch (userRole) {
