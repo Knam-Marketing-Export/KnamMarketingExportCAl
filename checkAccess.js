@@ -3,13 +3,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const pageName = window.location.pathname.split('/').pop(); // Get the current page name
 
     // Redirect to login if the user is not logged in or not authorized to access the page
-    if (!user || !user.access.includes(pageName)) {
-        // Ensure that redirection only happens once
-        if (window.location.pathname !== '/index.html') {
+    if (!user) {
+        // Redirect only if the user is not already on the login page (index.html)
+        if (pageName !== 'index.html') {
+            window.location.href = 'index.html';
+        }
+    } else if (!user.access || !user.access.includes(pageName)) {
+        // If the user doesn't have access to the current page, redirect to index.html
+        if (pageName !== 'index.html') {
             window.location.href = 'index.html';
         }
     }
-
 });
 
 
