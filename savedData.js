@@ -319,6 +319,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
         tableBody.innerHTML = '';
 
+                // Sort items by ID in ascending order (e.g., QN-01, QN-02, QN-03, etc.)
+        items.sort((a, b) => {
+            // Extract the numeric part of the ID and compare numerically
+            const numA = parseInt(a.ID.split('-')[1], 10);
+            const numB = parseInt(b.ID.split('-')[1], 10);
+            return numA - numB;
+        });
+
         items.forEach(item => {
             const row = document.createElement('tr');
             row.innerHTML = `        <td>${item.Date}</td>
