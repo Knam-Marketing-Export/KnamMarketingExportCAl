@@ -69,10 +69,6 @@ function updateValues(changedField) {
 
 }
 
-
-
-
-
 function calculateCost() {
 
     const exchangeRate = parseFloat(document.getElementById('exchangeRateeditmaster').value);
@@ -117,8 +113,7 @@ function calculateCost() {
     const localFreight = parseFloat(document.getElementById('localFreightEditMaster').value) / exchangeRate;
     const miscellaneous = parseFloat(document.getElementById('miscellaneousEditMaster').value);
     const margin = parseFloat(document.getElementById('marginEditMaster').value);
-    const salesPerson = parseFloat(document.getElementById('salesPersonDropdown').value);
-    const customer = parseFloat(document.getElementById('customerName').value);
+
 
     // console.log(paperPrice); // Check if paperPrice is retrieved correctly
     // console.log(freightCost); // Check if freightCost is retrieved correctly
@@ -157,6 +152,21 @@ function calculateCost() {
     document.getElementById('pricePerBox').innerText = pricePerBox.toFixed(2) + ' $ USD';
 
 }
+
+// Add event listeners to trigger the calculation when any input changes
+const inputs = [
+    'exchangeRateeditmaster', 'gsmSelect', 'reamsPerCarton', 'weightOfReam', 'noOfSheetInReam', 
+    'length', 'width', 'paperCostEditMaster', 'selectFreightEditMaster', 'sheettingPriceEditMaster', 
+    'boxPriceEditMaster', 'wrapperPriceEditMaster', 'localFreightEditMaster', 'miscellaneousEditMaster', 
+    'marginEditMaster'
+];
+
+inputs.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.addEventListener('input', calculateCost);
+    }
+});
 document.getElementById('convert-button').addEventListener('click', calculateCost);
 
 // Edit master hide and visible and section
