@@ -470,6 +470,11 @@ function handleConversion() {
     });
 }
 
+// Initialize the conversion function on window load
+window.onload = function () {
+    handleConversion();
+};
+
 // =======================================================================================================
 // sequence by disabling and enabling start
 // Get all the select elements
@@ -567,8 +572,3 @@ function resetReverseFrom(step) {
 
 // sequence by disabling and enabling end
 
-
-// Initialize the conversion function on window load
-window.onload = function () {
-    handleConversion();
-};
