@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const user = JSON.parse(localStorage.getItem('user')); // Retrieve user data from localStorage
         tableBody.innerHTML = '';
 
-                // Sort items by ID in ascending order (e.g., QN-01, QN-02, QN-03, etc.)
+        // Sort items by ID in ascending order (e.g., QN-01, QN-02, QN-03, etc.)
         items.sort((a, b) => {
             // Extract the numeric part of the ID and compare numerically
             const numA = parseInt(a.ID.split('-')[1], 10);
@@ -575,11 +575,15 @@ document.addEventListener('DOMContentLoaded', function () {
         return isNaN(exchangeRate) ? 1 : exchangeRate; // Default to 1 if NaN
     }
 
+
     // Debugging: log the current value of the exchange rate input
     exchangeRateInput.addEventListener('input', function () {
         console.log('Updated Exchange Rate Value:', getExchangeRate());
     });
 
+
+
+    // Event listener for mouseover to calculate conversion
     tableBody.addEventListener('mouseover', function (event) {
         if (event.target.tagName === 'TD') {
             const columnIndex = event.target.cellIndex;
