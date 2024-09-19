@@ -115,14 +115,14 @@ function calculateCost() {
     const margin = parseFloat(document.getElementById('marginEditMaster').value);
 
 
-    // console.log(paperPrice); // Check if paperPrice is retrieved correctly
-    // console.log(freightCost); // Check if freightCost is retrieved correctly
-    // console.log(sheetingCost); // Check if sheetingCost is retrieved correctly
-    // console.log(boxPrice); // Check if boxPrice is retrieved correctly
-    // console.log(wrappersPrice); // Check if wrappersPrice is retrieved correctly
-    // console.log(localFreight); // Check if localFreight is retrieved correctly
-    // console.log(miscellaneous); // Check if miscellaneous is retrieved correctly
-    // console.log(margin); // Check if margin is retrieved correctly
+    console.log(paperPrice); // Check if paperPrice is retrieved correctly
+    console.log(freightCost); // Check if freightCost is retrieved correctly
+    console.log(sheetingCost); // Check if sheetingCost is retrieved correctly
+    console.log(boxPrice); // Check if boxPrice is retrieved correctly
+    console.log(wrappersPrice); // Check if wrappersPrice is retrieved correctly
+    console.log(localFreight); // Check if localFreight is retrieved correctly
+    console.log(miscellaneous); // Check if miscellaneous is retrieved correctly
+    console.log(margin); // Check if margin is retrieved correctly
 
     // Get currency values
     const paperCurrency = document.getElementById('paperCostCurrencyEditMaster').value;
@@ -220,11 +220,6 @@ function validateString(value) {
     return typeof value === 'string' ? value : ''; // Ensure it's a string, return empty string if not
 }
 
-// // Generate a unique entry number
-// function generateEntryNumber() {
-//     return Date.now().toString(); // Use current timestamp as a unique Sort Key
-// }
-
 
 // Function to get the next sequential number from DynamoDB
 function getNextSequentialNumber(callback) {
@@ -291,20 +286,21 @@ function generateQuotationID(callback) {
 
 // Function to save result to DynamoDB
 function saveResultToDynamoDB(result) {
-    generateQuotationID(function (newQuotationID) {
-        if (newQuotationID === null) {
-            alert("Error generating Quotation ID.");
-            return;
-        }
+    // Confirm if the user wants to save the quotation
+    if (confirm("Do you want to save the Quotation?")) {
+        // Generate the Quotation ID after user confirmation
+        generateQuotationID(function (newQuotationID) {
+            if (newQuotationID === null) {
+                alert("Error generating Quotation ID.");
+                return;
+            }
 
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const year = today.getFullYear();
-        const saveDate = `${day}/${month}/${year}`;
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            const saveDate = `${day}/${month}/${year}`;
 
-        // Confirm if the user wants to save the quotation
-        if (confirm("Do you want to save the Quotation?")) {
             const params = {
                 TableName: 'CostCalculatorResults', // Replace with your table name
                 Item: {
@@ -350,10 +346,10 @@ function saveResultToDynamoDB(result) {
                     alert("Quotation saved successfully."); // Alert on success
                 }
             });
-        } else {
-            alert("Quotation not saved."); // Alert if user cancels
-        }
-    });
+        });
+    } else {
+        alert("Quotation not saved."); // Alert if user cancels
+    }
 }
 
 // Example usage: Add this function call where needed
@@ -402,12 +398,12 @@ document.getElementById('costCalculatorForm').addEventListener('reset', function
     document.getElementById('totalCost').innerText = '';
     document.getElementById('pricePerMT').innerText = '';
     document.getElementById('pricePerBox').innerText = '';
-    document.getElementById('sheettingPriceEditMaster').value = 0;
-    document.getElementById('wrapperPriceEditMaster').value = 0;
-    document.getElementById('boxPriceEditMaster').value = 0;
-    document.getElementById('marginEditMaster').value = 0;
-    document.getElementById('paperCostEditMaster').value = '';
-    document.getElementById('paperCostCurrencyEditMaster').value = INR;
+    // document.getElementById('sheettingPriceEditMaster').value = 0;
+    // document.getElementById('wrapperPriceEditMaster').value = 0;
+    // document.getElementById('boxPriceEditMaster').value = 0;
+    // document.getElementById('marginEditMaster').value = 0;
+    // document.getElementById('paperCostEditMaster').value = '';
+    // document.getElementById('paperCostCurrencyEditMaster').value = INR;
 });
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -478,7 +474,3 @@ function handleConversion() {
 window.onload = function () {
     handleConversion();
 };
-
-
-
-
