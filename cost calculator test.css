@@ -8,6 +8,13 @@ body {
     box-sizing: border-box; /* Ensure padding and borders are included in element's total width and height */
 }
 
+/* Hide spinners in Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} 
+
 /* Responsive Container */
 .container {
     max-width: 1200px; /* Limit the width for larger screens */
@@ -383,70 +390,6 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .form-conatiner-1 {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .container-edit-master {
-        position: static;
-        margin-top: 20px;
-    }
-
-    .quote-form {
-        position: static;
-        width: 100%;
-        max-width: 100%;
-        box-shadow: none;
-    }
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .container-nav {
-        width: 95%;
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        align-items: flex-start; /* Align items to the start */
-    }
-
-    .container-nav h1 {
-        width: 100%;
-        font-size: 1.5rem; /* Smaller font size for header */
-    }
-
-    .dashboard {
-        width: 95%;
-        margin: 0px;
-    }
-    h1, h2 {
-        width: 60%;
-        font-size: 1.2rem; /* Smaller font size for headings */
-        text-align: center;
-    }
-
-    .gsm-paperMill-paperCode {
-        display: flex;
-        flex-direction: column;
-        float: left;
-        gap: 5px;
-    }
-
-    .form-conatiner-1 {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .quote-form{
-        width: 90%;
-        margin: 2px;
-    }
-
-
-    #logout-button {
-        width: 100%; /* Full width button on smaller screens */
-    }
-}
 
 @media (max-width: 480px) {
     .container-nav {
@@ -465,62 +408,310 @@ button:hover {
 
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
+/* Universal Media Queries for Responsiveness */
+
+/* Styles for large screens (desktops, laptops) */
+
+
+/* Styles for small smartphones (less than 480px, e.g., iPhone 14, iPhone 15 Pro) */
+@media (max-width: 480px) {
     .dashboard {
-        padding: 15px; /* Reduce padding on smaller screens */
+        width: 100%; /* Maximize space usage */
+        padding: 5px;
+    }
+
+    h1, h2 {
+        font-size: 1.1rem; /* Smaller font size */
+        text-align: center; /* Center align headings */
     }
 
     .form-container {
-        flex-direction: column; /* Stack inputs vertically on small screens */
-        align-items: stretch; /* Stretch inputs to full width */
-    }
-
-    .input-css-size {
-        width: 50px; /* Smaller size input on mobile */
-    }
-}
-
-@media (max-width: 480px) {
-
-    .dashboard {
-        width: 95%;
-        margin: 0px;
-    }
-    h1, h2 {
-        width: 60%;
-        font-size: 1.2rem; /* Smaller font size for headings */
-        text-align: center;
+        flex-direction: column;
     }
 
     .gsm-paperMill-paperCode {
-        display: flex;
-        flex-direction: column;
-        float: left;
-        gap: 5px;
+        gap: 5px; /* Minimal gap between elements */
     }
 
-    .form-conatiner-1 {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .quote-form{
-        width: 90%;
-        margin: 2px;
-    }
-
-    .close-btn{
-        margin-top: 1205px;
-        margin-right: 20px;
+    .close-btn {
+        margin-top: 20px; /* Adjust positioning */
+        margin-right: 10px;
     }
 
     .button {
-        width: 100%; /* Full width buttons on mobile */
+        width: 100%; /* Full width buttons */
     }
 
     input[type="text"],
     select {
-        max-width: 100%; /* Full width for inputs on mobile */
+        width: 100%; /* Full width for inputs and selects */
     }
 }
+
+/* Styles for small smartphones (less than 480px, e.g., iPhone 14, iPhone 15 Pro) */
+@media (max-width: 392px) {
+
+    body{
+        max-width: 392px;
+        margin: 10px;
+        padding: 0;
+        position: absolute;
+    }
+
+    .container-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+    }
+
+    #firstHeading{
+    margin-left: 0px;
+    }
+
+    .master-container{
+        justify-content: flex-start;
+        gap: 30px;
+    }
+    .dashboard {
+        width: 100%; /* Maximize space usage */
+        padding: 5px;
+        margin-left: 5px;
+    }
+
+    h1 {
+        width: 100%;
+        font-size: 1.1rem; /* Smaller font size */
+        text-align: center; /* Center align headings */
+        margin-left: 0px;
+    }
+
+    .form-container {
+        flex-direction: column;
+    }
+
+    .gsm-paperMill-paperCode {
+        gap: 5px; /* Minimal gap between elements */
+    }
+
+    .paperMillBahl #PaperMillBhal{
+        width: 80px;
+    }
+
+    .container-edit-master{
+        width: 80%;
+        position: relative;
+        margin-top: -980px;
+        margin-left: 400px;
+    }
+
+    .close-btn {
+        margin-top: 5px; /* Adjust positioning */
+        margin-right: 10px;
+    }
+
+    .millSelectionwithCode{
+        margin-bottom: 5px;
+    }
+
+    .select-gsm-0{
+        margin-bottom: 5px;
+        height: 75px;
+    }
+
+    .paper-heading{
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .paper-heading h2{
+        width: 100%;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .select-gsm-0 #paperCostEditMaster {
+        width: 100px;
+    }
+    .select-gsm-0 #paperCostCurrencyEditMaster {
+        width: 60px;
+    }
+
+    .select-freight-0{
+        margin-bottom: 5px;
+        height: 75px;
+    }
+
+    .freight-heading {
+        margin-top: 5px;
+        width: 100%;
+    }
+    .freight-heading h2{
+        width: 100%;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .select-freight-0 #selectFreightEditMaster {
+        width: 100px;
+    }
+    .select-freight-0 #selectFreightCurrencyEditMaster {
+        width: 60px;
+    }
+
+    .other-section-conatiner-edit-master{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 5px;
+    }
+
+    .media-other-section-conatiner-edit-master{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+    .media-other-section-conatiner-edit-master #lable-edit-master{
+        width: 120px;
+    }
+
+    .button {
+        width: 100%; /* Full width buttons */
+    }
+
+    input[type="text"],
+    select {
+        width: 100%; /* Full width for inputs and selects */
+    }
+}
+
+/* Styles for small smartphones (less than 480px, e.g., iPhone 14, iPhone 15 Pro) */
+@media (max-width: 390px) {
+
+    body{
+        max-width: 390px;
+        margin: 10px;
+        padding: 0;
+        position: absolute;
+    }
+
+    .container-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+    }
+
+    #firstHeading{
+    margin-left: 0px;
+    }
+
+    .master-container{
+        justify-content: flex-start;
+        gap: 30px;
+    }
+    .dashboard {
+        width: 100%; /* Maximize space usage */
+        padding: 5px;
+        margin-left: 5px;
+    }
+
+    h1 {
+        width: 100%;
+        font-size: 1.1rem; /* Smaller font size */
+        text-align: center; /* Center align headings */
+        margin-left: 0px;
+    }
+
+    .form-container {
+        flex-direction: column;
+    }
+
+    .gsm-paperMill-paperCode {
+        gap: 5px; /* Minimal gap between elements */
+    }
+
+    .paperMillBahl #PaperMillBhal{
+        width: 80px;
+    }
+
+    .container-edit-master{
+        width: 80%;
+        position: relative;
+        margin-top: -1030px;
+        margin-left: 400px;
+    }
+
+    .close-btn {
+        margin-top: 5px; /* Adjust positioning */
+        margin-right: 10px;
+    }
+
+    .paper-heading{
+        width: 100%;
+    }
+
+    .paper-heading h2{
+        width: 100%;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .select-gsm-0 #paperCostEditMaster {
+        width: 100px;
+    }
+    .select-gsm-0 #paperCostCurrencyEditMaster {
+        width: 60px;
+    }
+
+    .freight-heading {
+        width: 100%;
+    }
+    .freight-heading h2{
+        width: 100%;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .select-freight-0 #selectFreightEditMaster {
+        width: 100px;
+    }
+    .select-freight-0 #selectFreightCurrencyEditMaster {
+        width: 60px;
+    }
+
+    .other-section-conatiner-edit-master{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 5px;
+    }
+
+    .media-other-section-conatiner-edit-master{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+
+    }
+    .media-other-section-conatiner-edit-master #lable-edit-master{
+        width: 120px;
+    }
+
+    .button {
+        width: 100%; /* Full width buttons */
+    }
+
+    input[type="text"],
+    select {
+        width: 100%; /* Full width for inputs and selects */
+    }
+}
+
+
