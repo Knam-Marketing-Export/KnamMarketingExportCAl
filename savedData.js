@@ -347,9 +347,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <td>${item.WeightOfCarton}</td>
             <td>${item.WrappersPerTon}</td>
             <td>${item.CartonsPerTon}</td>
-            <td>${item.TotalCost + ' $ USD'}</td>
-            <td>${item.PricePerMT + ' $ USD'}</td>
-            <td>${item.PricePerBox + ' $ USD'}</td>
+            <td>${' $ ' + item.TotalCost}</td>
+            <td>${' $ ' + item.PricePerMT}</td>
+            <td>${' $ ' + item.PricePerBox}</td>
             <td>${item.SheetingPlace}</td>
             <td>${item.SheetingCost}</td>
             <td>${item.WrappersPrice}</td>
@@ -752,16 +752,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // --------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
