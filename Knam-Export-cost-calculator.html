@@ -18,9 +18,7 @@
             <div class="company-name">
                 <h1 id="firstHeading">Knam Marketing</h1>
             </div>
-            <div class="logout-container">
-                <button id="logout-button">Logout</button>
-            </div>
+
         </div>
     </section>
 
@@ -35,8 +33,12 @@
                 <a href="saveDataPage.html"> <button id="saveData-section-button">Saved Quotation</button>
                 </a>
             </div>
-            <div class="edit-master">
+            <!-- <div class="edit-master">
                 <button onclick="editMaster()">Edit Master</button>
+            </div> -->
+
+            <div class="logout-container">
+                <button id="logout-button">Logout</button>
             </div>
         </div>
 
@@ -44,9 +46,11 @@
 
 
     <div class="dashboard">
-        <h1>Cost Calculator Dashboard</h1>
+        <div class="edit-master" style="margin-left: 450px;">
+            <button onclick="editMaster()">Edit Master</button>
+        </div>
+        <h1>Cost Calculator</h1>
         <div class="calculator-section">
-            <h2>Cost Calculator</h2>
             <form id="costCalculatorForm">
                 <div class="form-conatiner-1">
                     <div class="gsm-paperMill-paperCode">
@@ -81,6 +85,7 @@
                             </select>
                         </div>
                         <div class="paperMillBahl">
+                            <label for="sheetingPlace" class="label-css" style="font-weight: 700;">S. Place :</label>
                             <select name="paper-Mill-Bhal" id="PaperMillBhal">
                                 <option value="Other">Other</option>
                                 <option value="bahl">Bahl</option>
@@ -93,9 +98,9 @@
                     <div class="size-input">
                         <label for="sheetSize" class="lable-css-size">Sheet Size (cm) :</label>
 
-                        <input type="number" id="length" class="input-css-size" placeholder="L">
+                        <input type="number" id="length" value="24" class="input-css-size" placeholder="L">
                         <br>
-                        <input type="number" id="width" class="input-css-size" placeholder="W">
+                        <input type="number" id="width" value="34" class="input-css-size" placeholder="W">
                     </div>
                 </div>
 
@@ -123,6 +128,7 @@
                         <option value="DammamPort">Dammam</option>
                         <option value="RiyadhPort">Riyadh</option>
                         <option value="ShuwaikhPort">Shuwaikh</option>
+                        <option value="UmQasrPort">Um Qasr</option>
                     </select>
                 </div>
 
@@ -163,7 +169,7 @@
                     <option value="Shubham">Shubham</option>
                     <option value="Mohini">Mohini</option>
                     <option value="Yash">Yash</option>
-                    <option value="Madhu">Madhu</option>
+                    <option value="GaganSir">Gagan Sir</option>
                 </select>
             </div>
             <div class="customer-container">
@@ -182,10 +188,6 @@
                     <label for="exchangeRateEdit">Exchange Rate :</label>
                     <input type="number" id="exchangeRateeditmaster" style="width: 50px;">
                 </div>
-                <!-- <div class="paperMillCheckBox">
-                    <label for="millName">Code : 880</label>
-                    <input type="checkbox" id="millCheckBox" onclick="populateSavedDataCheckBox ()">
-                </div> -->
 
                 <div class="Select-mill-check-box">
                     <label for="paperMillCheckBox" class="label-css">Paper code :</label>
@@ -204,7 +206,9 @@
                 </div>
             </div>
             <!-- Edit master GSM price currency -->
-            <h2>Paper cost</h2>
+            <div class="paper-heading">
+                <h2>Paper cost</h2>
+            </div>
             <div class="select-gsm-0">
                 <label for="GSM-price">GSM / Price :</label>
                 <!-- <input type="selectGsmEditMaster" id="selectGsmEditMaster"> -->
@@ -217,8 +221,8 @@
                     <option value="35">35</option>
                     <option value="45">45</option>
                 </select>
-                <input type="number" id="paperCostEditMaster" required>
-                <select id="paperCostCurrencyEditMaster">
+                <input type="number" id="paperCostEditMaster" class="media-css-input" required>
+                <select id="paperCostCurrencyEditMaster" class="media-css-select">
                     <option value="INR">INR</option>
                     <option value="USD">USD</option>
                 </select>
@@ -226,17 +230,20 @@
                 <p id="INRResultEditMaster"></p><br>
             </div>
             <!-- Edit master freight currenct -->
-            <h2>Freight Cost</h2>
+            <div class="freight-heading">
+                <h2>Freight Cost</h2>
+            </div>
             <div class="select-freight-0">
                 <label for="freight-price">Freight / Price :</label>
                 <!-- <input type="selectPortEditMaster" id="selectPortEditMaster"> -->
-                <select name="selectPortEditMaster" id="selectPortEditMaster">
+                <select name="selectPortEditMaster" id="selectPortEditMaster" style="display: none;">
                     <option value="select">Select</option>
                     <option value="JebelAliPort">Jebel-Ali</option>
                     <option value="SoharPort">Sohar</option>
                     <option value="DammamPort">Dammam</option>
                     <option value="RiyadhPort">Riyadh</option>
                     <option value="ShuwaikhPort">Shuwaikh</option>
+                    <option value="UmQasrPort">Um Qasr</option>
                 </select>
                 <input type="number" id="selectFreightEditMaster" required>
                 <select id="selectFreightCurrencyEditMaster">
@@ -257,7 +264,7 @@
                 </div>
 
             </div>
-            <div class="other-section-conatiner-edit-master">
+            <div class="other-section-conatiner-edit-master media-other-section-conatiner-edit-master">
                 <div class="box-price-edit-master">
                     <label for="boxPriceEditMaster" id="lable-edit-master">Box price per box (INR) :</label>
                     <input type="number" id="boxPriceEditMaster">
@@ -267,7 +274,7 @@
                     <input type="number" id="marginEditMaster">
                 </div>
             </div>
-            <div class="other-section-conatiner-edit-master">
+            <div class="other-section-conatiner-edit-master media-other-section-conatiner-edit-master">
                 <div class="localFreight-section-edit-master">
                     <label for="localFreightEditMaster" id="lable-edit-master">Local Freight :</label>
                     <input type="number" id="localFreightEditMaster">
