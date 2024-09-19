@@ -689,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     Box Cost / Box (INR): ₹${boxCost}\n
                     Local Freight (INR): ₹${localFreightCost}\n
                     Miscellaneous (INR): ₹${miscellaneousCost}\n
-                    Margin: ₹${marginCost}\n
+                    Code: ₹${marginCost}\n
                 `;
                 event.target.setAttribute('title', tooltipText.trim());
             }
