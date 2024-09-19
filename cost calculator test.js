@@ -470,6 +470,104 @@ function handleConversion() {
     });
 }
 
+// =======================================================================================================
+// sequence by disabling and enabling start
+// Get all the select elements
+const gsmSelect = document.getElementById('gsmSelect');
+const paperMill = document.getElementById('paperMill');
+const paperCode = document.getElementById('paperCode');
+const paperMillBhal = document.getElementById('PaperMillBhal');
+
+// Initially disable all except GSM
+paperMill.disabled = true;
+paperCode.disabled = true;
+paperMillBhal.disabled = true;
+
+// Forward direction logic
+gsmSelect.addEventListener('change', () => {
+    if (gsmSelect.value !== 'select') {
+        paperMill.disabled = false; // Enable PaperMill
+    } else {
+        resetForward(); // Reset if GSM is reselected to "Select"
+    }
+});
+
+paperMill.addEventListener('change', () => {
+    if (paperMill.value !== 'select') {
+        paperCode.disabled = false; // Enable PaperCode
+    } else {
+        resetForwardFrom('paperMill'); // Reset from PaperMill
+    }
+});
+
+paperCode.addEventListener('change', () => {
+    if (paperCode.value !== '0') {
+        paperMillBhal.disabled = false; // Enable PaperMillBhal
+    } else {
+        resetForwardFrom('paperCode'); // Reset from PaperCode
+    }
+});
+
+// Reverse direction logic and special case for 'Bahl'
+paperMillBhal.addEventListener('change', () => {
+    if (paperMillBhal.value === 'bahl') {
+        paperMill.disabled = true; // Disable paperMill when 'Bahl' is selected
+    } else {
+        paperMill.disabled = false; // Enable paperMill when 'Other' is selected
+    }
+});
+
+// Reverse direction for other changes
+paperCode.addEventListener('change', () => {
+    if (paperCode.value !== '0') {
+        paperMill.disabled = false; // Enable PaperMill
+    } else {
+        resetReverseFrom('paperCode'); // Reset from PaperCode
+    }
+});
+
+paperMill.addEventListener('change', () => {
+    if (paperMill.value !== 'select') {
+        gsmSelect.disabled = false; // Enable GSM
+    } else {
+        resetReverseFrom('paperMill'); // Reset from PaperMill
+    }
+});
+
+// Reset functions
+function resetForward() {
+    paperMill.disabled = true;
+    paperCode.disabled = true;
+    paperMillBhal.disabled = true;
+}
+
+function resetForwardFrom(step) {
+    if (step === 'paperMill') {
+        paperCode.disabled = true;
+        paperMillBhal.disabled = true;
+    } else if (step === 'paperCode') {
+        paperMillBhal.disabled = true;
+    }
+}
+
+function resetReverse() {
+    paperCode.disabled = true;
+    paperMill.disabled = true;
+    gsmSelect.disabled = true;
+}
+
+function resetReverseFrom(step) {
+    if (step === 'paperCode') {
+        paperMill.disabled = true;
+        gsmSelect.disabled = true;
+    } else if (step === 'paperMill') {
+        gsmSelect.disabled = true;
+    }
+}
+
+// sequence by disabling and enabling end
+
+
 // Initialize the conversion function on window load
 window.onload = function () {
     handleConversion();
