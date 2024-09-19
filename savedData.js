@@ -688,8 +688,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     Wrapper Cost / Kg (INR): ₹${wrapperCost}\n
                     Box Cost / Box (INR): ₹${boxCost}\n
                     Local Freight (INR): ₹${localFreightCost}\n
-                    Miscellaneous (INR): ₹${miscellaneousCost}\n
-                    Code: ₹${marginCost}\n
+                    Miscellaneous (INR): $${miscellaneousCost}\n
+                    Code: ${marginCost}\n
                 `;
                 event.target.setAttribute('title', tooltipText.trim());
             }
