@@ -29,7 +29,7 @@ function getOtherValues() {
             const BoxPrice = data.Item ? data.Item['BoxPrice'] : 'Not Found';
             const wrapperCost = data.Item ? data.Item['WrapperCost'] : 'Not Found';
             const LocalFreight = data.Item ? data.Item['LocalFreight'] : 'Not Found';
-            const MiscellaneousCost = data.Item ? data.Item['Miscellaneous '] : 'Not Found';
+            const MiscellaneousCost = data.Item ? data.Item['Miscellaneous'] : 'Not Found';
             const MarginValue = data.Item ? data.Item['Margin'] : 'Not Found';
             const exchangeRateInput = document.getElementById('exchangeRate');
             const sheetingCostInput = document.getElementById('sheetingCost');
@@ -50,13 +50,13 @@ function getOtherValues() {
                 console.error("Element with ID 'exchangeRate' not found.");
             }
 
-            // console.log("Exchange Rate =",exchangeRate);
-            // console.log("Sheeting Cost =",sheetingCost);
-            // console.log("Box Price =",BoxPrice);
-            // console.log("Wrapper Cost =",wrapperCost);
-            // console.log("Local Freight =" ,LocalFreight)
-            // console.log("Miscellaneous Cost =" ,MiscellaneousCost)
-            // console.log("Margin Value =" ,MarginValue)
+            console.log("Exchange Rate =",exchangeRate);
+            console.log("Sheeting Cost =",sheetingCost);
+            console.log("Box Price =",BoxPrice);
+            console.log("Wrapper Cost =",wrapperCost);
+            console.log("Local Freight =" ,LocalFreight)
+            console.log("Miscellaneous Cost =" ,MiscellaneousCost)
+            console.log("Margin Value =" ,MarginValue)
 
         }
     });
@@ -1614,12 +1614,3 @@ window.onload = function () {
         initCurrencyHandlers(exchangeRate);
     });
 };
-
-
-
-
-
-
-
-
-
