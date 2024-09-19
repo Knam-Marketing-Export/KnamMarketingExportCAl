@@ -375,3 +375,84 @@ table td[title] {
 #edit-save-button:hover{
     background-color: #0056b3;
 }
+
+
+/* =============================================================================================== */
+@media (max-width: 392px) {
+    body{
+        max-width: 392px;
+        position: relative;
+    }
+
+    .container-edit-master {
+        /* width: 150%; Increase width for smaller screens to utilize more space */
+        padding: 5px; /* Reduce padding for better fit */
+        position: fixed; 
+        top: 1681px;
+        left: 200px;
+        transform: translate(-50%, -50%); /* Adjust for actual center alignment */
+        margin-right: 50px; /* Removed margin for centering */
+        padding: 20px;
+        width: 85%; /* Maintained width */
+        z-index: 1000;
+        transition: all 0.3s ease; /* Smooth transition for visibility changes */
+    }
+
+    .quote-form {
+        padding: 15px; /* Reduce padding for smaller form */
+
+    }
+
+    .edit-main-conatiner {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: stretch; /* Make items stretch to full width */
+    }
+
+    .edit-container-one {
+        border-right: none; /* Remove right border in single column view */
+        width: 100%; /* Full width for smaller screens */
+        margin-bottom: 10px; /* Add space below the container */
+    }
+
+    .edit-container-two {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .edit-save-quotation-first-row {
+        flex-direction: column; /* Stack buttons on top of each other */
+        gap: 5px; /* Reduced gap for better spacing */
+    }
+
+    .edit-lable-first-row, .edit-lable-second-row {
+        width: auto; /* Allow label width to adjust automatically */
+        font-size: 11px; /* Slightly smaller font size for better fit */
+    }
+
+    .edit-select, .editcurrency-css {
+        width: 100%; /* Full width on smaller screens */
+        height: 30px; /* Increase height for easier touch */
+        font-size: 14px; /* Adjust font size for readability */
+    }
+
+    .edit-container-main{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    #editResults {
+        padding: 5px; /* Reduce padding */
+        margin-top: 15px; /* Adjust margin for spacing */
+    }
+
+    #editResults p {
+        font-size: 12px; /* Smaller font size for better fit */
+        margin: 5px 0; /* Reduced margin */
+    }
+
+    #edit-save-button {
+        width: 10%; /* Make button full width */
+        font-size: 14px; /* Increase font size slightly */
+    }
+}
+
