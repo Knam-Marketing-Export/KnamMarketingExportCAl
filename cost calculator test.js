@@ -539,6 +539,21 @@ paperMill.addEventListener('change', () => {
     }
 });
 
+// Logic to change border of PaperMillBhal to red if PaperMill is clicked while disabled
+paperMillBhal.addEventListener('click', () => {
+    if (paperMill.disabled) {
+        paperMillBhal.style.borderColor = 'red'; // Change border to red
+        paperMillBhal.style.borderWidth = '2px'; // Make border thicker
+    }
+});
+
+// Reset PaperMillBhal border on selection
+paperMillBhal.addEventListener('change', () => {
+    paperMillBhal.style.borderColor = ''; // Reset border color to default
+    paperMillBhal.style.borderWidth = ''; // Reset border width
+});
+
+
 // Reset functions
 function resetForward() {
     paperMill.disabled = true;
