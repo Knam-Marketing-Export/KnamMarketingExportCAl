@@ -1291,6 +1291,24 @@ function getFreightData() {
                             console.error("Element with ID 'JebelAli' 'JebelAliFreight', 'JebelAliFreightCurrency', not found.");
                         }
                     }
+                    // umQaser
+                    const freightDetailsUmQaser = freightCostDataPort['UmQasrPort'];
+                    if (freightDetailsUmQaser) {
+                        const umQaserPort = freightDetailsUmQaser['Port'] || 'Not Found';
+                        const umQaserCost = freightDetailsUmQaser['Freight'] || 'Not Found';
+                        const umQaserCurrency = freightDetailsUmQaser['Currency'] || 'Not Found';
+                        const umQaserPortInput = document.getElementById('umQaser');
+                        const umQaserCostInput = document.getElementById('umQaserFreight');
+                        const umQaserCurrencyInput = document.getElementById('umQaserFreightCurrency');
+
+                        if (umQaserPortInput && umQaserCostInput && umQaserCurrencyInput) {
+                            umQaserPortInput.value = umQaserPort !== 'Not Found' ? umQaserPort : '';
+                            umQaserCostInput.value = !isNaN(parseFloat(umQaserCost)) ? parseFloat(umQaserCost) : '';
+                            umQaserCurrencyInput.value = umQaserCurrency || 'INR'; // Default to INR if currency not found
+                        } else {
+                            console.error("Element with ID 'umQaser' 'umQaserFreight', 'umQaserFreightCurrency', not found.");
+                        }
+                    }
                 }
             }
         }
@@ -1319,6 +1337,10 @@ function updateFreightData() {
     const shuwaikhCost = parseFloat(document.getElementById('shuwaikhFreight').value) || 0;
     const shuwaikhCurrency = document.getElementById('shuwaikhFreightCurrency').value || 'INR';
 
+    const umQaserPort = document.getElementById('umQaser').value || 'Not Found';
+    const umQaserCost = parseFloat(document.getElementById('umQaserFreight').value) || 0;
+    const umQaserCurrency = document.getElementById('umQaserFreightCurrency').value || 'INR';
+
     const params = {
         TableName: "masterDataExportCal", // Replace with your actual table name
         Key: {
@@ -1340,7 +1362,10 @@ function updateFreightData() {
                 #cs.#fc.RiyadhPort.Currency = :riyadhCurrency,
                 #cs.#fc.ShuwaikhPort.Port = :shuwaikhPort, 
                 #cs.#fc.ShuwaikhPort.Freight = :shuwaikhCost,
-                #cs.#fc.ShuwaikhPort.Currency = :shuwaikhCurrency
+                #cs.#fc.ShuwaikhPort.Currency = :shuwaikhCurrency,
+                #cs.#fc.UmQasrPort.Port = :umQaserPort, 
+                #cs.#fc.UmQasrPort.Freight = :umQaserCost,
+                #cs.#fc.UmQasrPort.Currency = :umQaserCurrency
         `,
         ExpressionAttributeNames: {
             "#cs": "CostSheets",
@@ -1361,7 +1386,10 @@ function updateFreightData() {
             ":riyadhCurrency": riyadhCurrency,
             ":shuwaikhPort": shuwaikhPort,
             ":shuwaikhCost": shuwaikhCost.toString(),
-            ":shuwaikhCurrency": shuwaikhCurrency
+            ":shuwaikhCurrency": shuwaikhCurrency,
+            ":umQaserPort": umQaserPort,
+            ":umQaserCost": umQaserCost.toString(),
+            ":umQaserCurrency": umQaserCurrency
         },
         ReturnValues: "UPDATED_NEW"
     };
@@ -1370,7 +1398,6 @@ function updateFreightData() {
         if (err) {
             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            alert("Freight data updated successfully!");
         }
     });
 }
