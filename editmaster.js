@@ -8,15 +8,6 @@ AWS.config.update({
 // Create DynamoDB service object
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-// // Define parameters to get the data
-// const params = {
-//     TableName: 'test-table-code',
-//     Key: {
-//         "test_table_code": "123456",
-//         "Date": "04-09-2024" // Use the date format as per your table schema
-//     }
-// };
-
 function updatePriceBasedOnSelections() {
     // Get the selected values
     const selectedGSM = document.getElementById('gsmSelect').value;
@@ -213,6 +204,3 @@ document.getElementById('PaperMillBhal').addEventListener('change', function () 
 
 // Call this function to fetch and update all the additional costs
 updateAdditionalCosts();
-
-
-
