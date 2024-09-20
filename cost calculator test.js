@@ -141,7 +141,23 @@ function calculateCost() {
 
     // Total Cost
     const totalCost = paperCostInUSD + freightCostInUSD + sheetingCost + boxPrice + wrappersPrice + localFreight + miscellaneous;
-    document.getElementById('totalCost').innerText = totalCost.toFixed(2) + ' $ USD';
+    const totalCostElement = document.getElementById('totalCost');
+
+    // Check if totalCost is a valid number
+    if (isNaN(totalCost)) {
+        totalCostElement.innerText = 'Invalid Value $';
+        totalCostElement.style.color = 'red'; // Apply red color for NaN
+    } else {
+        totalCostElement.innerText = totalCost.toFixed(2) + ' $ USD';
+
+        // Change color to red if total cost is less than 800
+        if (totalCost < 800) {
+            totalCostElement.style.color = 'red';
+        } else {
+            totalCostElement.style.color = ''; // Reset to default color if not
+        }
+    }
+
 
     // Price per MT
     const pricePerMT = totalCost + margin;
