@@ -678,18 +678,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 const tooltipText = `
                     BreakUp of Total Cost\n
                     Quotation No : ${QNOne}\n
-                    Paper Cost (USD): $${paperCostUSD}
-                    Paper Cost (INR): ₹${paperCost}\n
-                    Freight Cost (USD): $${freightCostUSD}
-                    Freight Cost (INR): ₹${freightCost}\n
-                    Sheeting Cost / MT (USD): $${sheetingCostUSD}
+                    Paper Cost / MT (INR): ₹${paperCost}\n
+                    Freight Cost / MT (INR): ₹${freightCost}\n
                     Sheeting Cost / Kg (INR): ₹${sheetingCost}\n
-                    Wrapper Cost / MT (USD): $${wrapperCostUSD}
-                    Wrapper Cost / Kg (INR): ₹${wrapperCost}\n
+                    Wrapper Cost / piece (INR): ₹${wrapperCost}\n
                     Box Cost / Box (INR): ₹${boxCost}\n
-                    Local Freight (INR): ₹${localFreightCost}\n
-                    Miscellaneous (INR): $${miscellaneousCost}\n
-                    Code: ${marginCost}\n
+                    Local Freight / Cont. (INR): ₹${localFreightCost}\n
+                    Miscellaneous / cont. (USD): $${miscellaneousCost}\n
+                    code: ${marginCost}\n
                 `;
                 event.target.setAttribute('title', tooltipText.trim());
             }
